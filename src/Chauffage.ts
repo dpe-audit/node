@@ -342,7 +342,7 @@ export interface Systeme {
   installation_id: string
   generateur_id: string
   type: Systeme.TypeChauffage
-  reseau: Systeme.Reseau
+  reseau: Systeme.Reseau | null
   emetteurs: string[]
 }
 
