@@ -1,0 +1,12 @@
+{
+  "name": "dpe-audit",
+  "type": "module",
+  "version": "0.1.1",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "src",
+    "index.ts"
+  ]
+}
