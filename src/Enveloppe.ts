@@ -8,6 +8,12 @@ export interface Enveloppe {
 }
 
 export interface EnveloppeWithData extends Enveloppe {
+  murs: MurWithData[]
+  planchers_hauts: PlancherHautWithData[]
+  planchers_bas: PlancherBasWithData[]
+  baies: BaieWithData[]
+  portes: PorteWithData[]
+  ponts_thermiques: PontThermiqueWithData[]
   data: EnveloppeData
 }
 
