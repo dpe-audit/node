@@ -85,7 +85,6 @@ export interface InstallationData {
 
 export interface Systeme {
   id: string
-  description: string
   installation_id: string
   generateur_id: string
   reseau: Systeme.Reseau
