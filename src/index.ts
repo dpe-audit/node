@@ -1,5 +1,6 @@
 export { DPEAudit } from './dpe-audit'
 export * as Audit from './audit'
+export * as Common from './common'
 export * as Chauffage from './chauffage'
 export * as Eclairage from './eclairage'
 export * as Ecs from './ecs'
