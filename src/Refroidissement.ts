@@ -1,19 +1,24 @@
-import type { Besoin, Consommation, Emission } from './Common'
+import { Besoin, Consommation, Emission, Energie } from './common'
+import { NotFound } from './errors'
+import { send } from './request'
+
+export const retrieveRefroidissement = async (
+  id: string
+): Promise<Refroidissment | NotFound> => {
+  return send<Refroidissment | NotFound>({
+    method: 'GET',
+    path: `/audit/${id}/refroidissement`
+  })
+}
 
 export interface Refroidissment {
   generateurs: Generateur[]
   installations: Installation[]
   systemes: Systeme[]
+  data?: Partial<RefroidissmentData>
 }
 
-export interface RefroidissmentWithData extends Refroidissment {
-  generateurs: GenerateurWithData[]
-  installations: InstallationWithData[]
-  systemes: SystemeWithData[]
-  data: RefroidissmentData
-}
-
-export interface RefroidissmentData {
+export type RefroidissmentData = {
   besoins: Besoin[]
   consommations: Consommation[]
   emissions: Emission[]
@@ -22,18 +27,15 @@ export interface RefroidissmentData {
 export interface Generateur {
   id: string
   description: string
-  type: Generateur.TypeGenerateur
-  energie: Generateur.EnergieGenerateur
+  type: TypeGenerateur
+  energie: EnergieGenerateur
   annee_installation: number | null
   seer: number | null
   reseau_froid_id: string | null
+  data?: Partial<GenerateurData>
 }
 
-export interface GenerateurWithData extends Generateur {
-  data: GenerateurData
-}
-
-export interface GenerateurData {
+export type GenerateurData = {
   eer: number | null
   consommations: Consommation[]
   emissions: Emission[]
@@ -43,13 +45,10 @@ export interface Installation {
   id: string
   description: string
   surface: number
+  data?: Partial<InstallationData>
 }
 
-export interface InstallationWithData extends Installation {
-  data: InstallationData
-}
-
-export interface InstallationData {
+export type InstallationData = {
   rdim: number
   consommations: Consommation[]
   emissions: Emission[]
@@ -59,70 +58,27 @@ export interface Systeme {
   id: string
   installation_id: string
   generateur_id: string
+  data?: Partial<SystemeData>
 }
 
-export interface SystemeWithData extends Systeme {
-  data: SystemeData
-}
-
-export interface SystemeData {
+export type SystemeData = {
   rdim: number
   consommations: Consommation[]
   emissions: Emission[]
 }
 
-export namespace Generateur {
-  export enum TypeGenerateur {
-    pac_air_air = 'pac_air_air',
-    pac_air_eau = 'pac_air_eau',
-    pac_eau_eau = 'pac_eau_eau',
-    pac_eau_glycolee_eau = 'pac_eau_glycolee_eau',
-    pac_geothermique = 'pac_geothermique',
-    reseau_froid = 'reseau_froid',
-    autre_systeme_thermodynamique = 'autre_systeme_thermodynamique',
-    autre = 'autre'
-  }
-
-  export enum EnergieGenerateur {
-    electricite = 'electricite',
-    gaz_naturel = 'gaz_naturel',
-    gpl = 'gpl',
-    reseau_froid = 'reseau_froid'
-  }
-
-  export const typeGenerateurToString = (value: TypeGenerateur): string => {
-    switch (value) {
-      case TypeGenerateur.pac_air_air:
-        return 'PAC air/air'
-      case TypeGenerateur.pac_air_eau:
-        return 'PAC air/eau'
-      case TypeGenerateur.pac_eau_eau:
-        return 'PAC eau/eau'
-      case TypeGenerateur.pac_eau_glycolee_eau:
-        return 'PAC eau glycolée/eau'
-      case TypeGenerateur.pac_geothermique:
-        return 'PAC géothermique'
-      case TypeGenerateur.reseau_froid:
-        return 'Réseau froid'
-      case TypeGenerateur.autre_systeme_thermodynamique:
-        return 'Autre système thermodynamique'
-      case TypeGenerateur.autre:
-        return 'Autre'
-    }
-  }
-
-  export const energieGenerateurToString = (
-    value: EnergieGenerateur
-  ): string => {
-    switch (value) {
-      case EnergieGenerateur.electricite:
-        return 'Electricité'
-      case EnergieGenerateur.gaz_naturel:
-        return 'Gaz naturel'
-      case EnergieGenerateur.gpl:
-        return 'GPL'
-      case EnergieGenerateur.reseau_froid:
-        return 'Réseau froid'
-    }
-  }
+export enum TypeGenerateur {
+  pac_air_air = 'pac_air_air',
+  pac_air_eau = 'pac_air_eau',
+  pac_eau_eau = 'pac_eau_eau',
+  pac_eau_glycolee_eau = 'pac_eau_glycolee_eau',
+  pac_geothermique = 'pac_geothermique',
+  reseau_froid = 'reseau_froid',
+  autre_systeme_thermodynamique = 'autre_systeme_thermodynamique',
+  autre = 'autre'
 }
+
+export type EnergieGenerateur = Extract<
+  Energie,
+  Energie.electricite | Energie.gaz_naturel | Energie.gpl | Energie.reseau_froid
+>

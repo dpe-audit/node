@@ -1,10 +1,81 @@
-import type { Chauffage, ChauffageWithData } from './Chauffage'
-import type { Consommation } from './Common'
-import type { Eclairage, EclairageWithData } from './Eclairage'
-import type { Ecs, EcsWithData } from './Ecs'
-import type { Enveloppe, EnveloppeWithData } from './Enveloppe'
-import type { Refroidissment, RefroidissmentWithData } from './Refroidissement'
-import type { Ventilation, VentilationWithData } from './Ventilation'
+import { Chauffage } from './chauffage'
+import { Consommation } from './common'
+import { Eclairage } from './eclairage'
+import { Ecs } from './ecs'
+import { Enveloppe } from './enveloppe'
+import { Refroidissment } from './refroidissement'
+import { Ventilation } from './ventilation'
+import { NotFound, Unprocessable, BadRequest } from './errors'
+import { send } from './request'
+
+export const retrieveAudit = async (id: string): Promise<Audit | NotFound> => {
+  return send<Audit | NotFound>({
+    method: 'GET',
+    path: `/audit/${id}`
+  })
+}
+
+export const createAudit = async (
+  payload: Audit
+): Promise<Audit | BadRequest | Unprocessable> => {
+  return send<Audit | BadRequest | Unprocessable>({
+    method: 'POST',
+    path: `/audit`,
+    body: payload
+  })
+}
+
+export const replaceAudit = async (
+  id: string,
+  payload: Audit
+): Promise<Audit | NotFound | BadRequest | Unprocessable> => {
+  return send<Audit | NotFound | BadRequest | Unprocessable>({
+    method: 'PUT',
+    path: `/audit/${id}`,
+    body: payload
+  })
+}
+
+export const updateAudit = async (
+  id: string,
+  payload: { scenarios: Partial<Audit>[] }
+): Promise<Audit | NotFound | BadRequest | Unprocessable> => {
+  return send<Audit | NotFound | BadRequest | Unprocessable>({
+    method: 'PATCH',
+    path: `/audit/${id}`,
+    body: payload
+  })
+}
+
+export const searchAudits = async (
+  query: Partial<SearchAuditQuery>
+): Promise<Partial<Audit>[]> => {
+  return send<Partial<Audit>[]>({
+    method: 'GET',
+    path: `/audits`,
+    params: query
+  })
+}
+
+export type SearchAuditQuery = {
+  page: number
+  sort: string
+  randomize: boolean
+  code_postal: string[]
+  code_departement: string[]
+  type_batiment: TypeBatiment[]
+  zone_climatique: ZoneClimatique[]
+  etiquette_energie: EtiquetteEnergie[]
+  etiquette_climat: EtiquetteClimat[]
+  'date_etablissement[min]': Date
+  'date_etablissement[max]': Date
+  'altitude[min]': number
+  'altitude[max]': number
+  'annee_construction[min]': number
+  'annee_construction[max]': number
+  'surface_habitable[min]': number
+  'surface_habitable[max]': number
+}
 
 export interface Audit {
   batiment: Batiment
@@ -15,19 +86,18 @@ export interface Audit {
   eclairage: Eclairage
   refroidissement: Refroidissment
   ventilation: Ventilation
-}
-
-export interface AuditWithData extends Audit {
-  enveloppe: EnveloppeWithData
-  chauffage: ChauffageWithData
-  ecs: EcsWithData
-  eclairage: EclairageWithData
-  refroidissement: RefroidissmentWithData
-  ventilation: VentilationWithData
-  data: AuditData
+  data?: Partial<AuditData>
 }
 
 export type AuditData = {
+  effet_joule: boolean
+  surface_habitable: number
+  hauteur_sous_plafond: number
+  volume_habitable: number
+  nombre_logements: number
+  type_batiment: TypeBatiment
+  tbase: number
+  zone_climatique: ZoneClimatique
   consommations: Consommation[]
   cef: number
   cep: number
@@ -37,7 +107,6 @@ export type AuditData = {
 }
 
 export type Batiment = {
-  type: TypeBatiment
   annee_construction: number
   altitude: number
   logements: number
@@ -47,8 +116,7 @@ export type Batiment = {
   rnb_id: string | null
 }
 
-export type Adresse = {
-  zone_climatique: ZoneClimatique
+export interface Adresse {
   numero: string | null
   nom: string
   code_postal: string
@@ -91,18 +159,4 @@ export enum EtiquetteClimat {
   E = 'E',
   F = 'F',
   G = 'G'
-}
-
-export const typeBatimentToString = (type: TypeBatiment): string => {
-  switch (type) {
-    case TypeBatiment.maison:
-      return 'Maison individuelle'
-    case TypeBatiment.immeuble:
-      return 'Immeuble'
-  }
-}
-
-export const adresseToString = (adresse: Adresse): string => {
-  const { numero, nom, code_postal, commune } = adresse
-  return `${numero ? numero + ' ' : ''}${nom}, ${code_postal} ${commune}`
 }

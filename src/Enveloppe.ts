@@ -1,3 +1,15 @@
+import { NotFound } from './errors'
+import { send } from './request'
+
+export const retrieveEnveloppe = async (
+  id: string
+): Promise<Enveloppe | NotFound> => {
+  return send<Enveloppe | NotFound>({
+    method: 'GET',
+    path: `/audit/${id}/enveloppe`
+  })
+}
+
 export interface Enveloppe {
   murs: Mur[]
   planchers_hauts: PlancherHaut[]
@@ -5,19 +17,10 @@ export interface Enveloppe {
   baies: Baie[]
   portes: Porte[]
   ponts_thermiques: PontThermique[]
+  data?: Partial<EnveloppeData>
 }
 
-export interface EnveloppeWithData extends Enveloppe {
-  murs: MurWithData[]
-  planchers_hauts: PlancherHautWithData[]
-  planchers_bas: PlancherBasWithData[]
-  baies: BaieWithData[]
-  portes: PorteWithData[]
-  ponts_thermiques: PontThermiqueWithData[]
-  data: EnveloppeData
-}
-
-export interface EnveloppeData {
+export type EnveloppeData = {
   gv: number
   ubat: number
   inertie_lourde: boolean
@@ -45,13 +48,10 @@ export interface Mur {
   u: number | null
   position: Mur.Position
   isolation: Isolation
+  data?: Partial<MurData>
 }
 
-export interface MurWithData extends Mur {
-  data: MurData
-}
-
-export interface MurData {
+export type MurData = {
   sdep: number
   u0: number
   u: number
@@ -72,13 +72,10 @@ export interface PlancherBas {
   u: number | null
   position: PlancherBas.Position
   isolation: Isolation
+  data?: Partial<PlancherBasData>
 }
 
-export interface PlancherBasWithData extends PlancherBas {
-  data: PlancherBasData
-}
-
-export interface PlancherBasData {
+export type PlancherBasData = {
   sdep: number
   u0: number
   u: number
@@ -99,13 +96,10 @@ export interface PlancherHaut {
   u: number | null
   position: PlancherHaut.Position
   isolation: Isolation
+  data?: Partial<PlancherHautData>
 }
 
-export interface PlancherHautWithData extends PlancherHaut {
-  data: PlancherHautData
-}
-
-export interface PlancherHautData {
+export type PlancherHautData = {
   sdep: number
   u0: number
   u: number
@@ -132,13 +126,10 @@ export interface Baie {
   position: Baie.Position
   vitrage: Baie.Vitrage
   menuiserie: Baie.Menuiserie
+  data?: Partial<BaieData>
 }
 
-export interface BaieWithData extends Baie {
-  data: BaieData
-}
-
-export interface BaieData {
+export type BaieData = {
   sdep: number
   u: number
   b: number
@@ -159,13 +150,10 @@ export interface Porte {
   position: Porte.Position
   vitrage: Porte.Vitrage
   menuiserie: Porte.Menuiserie
+  data?: Partial<PorteData>
 }
 
-export interface PorteWithData extends Porte {
-  data: PorteData
-}
-
-export interface PorteData {
+export type PorteData = {
   sdep: number
   u: number
   b: number
@@ -179,13 +167,10 @@ export interface PontThermique {
   description: string
   longueur: number
   liaison: PontThermique.Liaison
+  data?: Partial<PontThermiqueData>
 }
 
-export interface PontThermiqueWithData extends PontThermique {
-  data: PontThermiqueData
-}
-
-export interface PontThermiqueData {
+export type PontThermiqueData = {
   kpt: number
   pt: number
 }
@@ -278,64 +263,6 @@ export type Isolation = {
   resistance_thermique_isolation: number | null
 }
 
-export const performanceToString = (value: Performance): string => {
-  switch (value) {
-    case Performance.tres_bonne:
-      return 'Très bonne'
-    case Performance.bonne:
-      return 'Bonne'
-    case Performance.moyenne:
-      return 'Moyenne'
-    case Performance.insuffisante:
-      return 'Insuffisante'
-  }
-}
-
-export const confortEteToString = (value: ConfortEte): string => {
-  switch (value) {
-    case ConfortEte.bon:
-      return 'Bon'
-    case ConfortEte.moyen:
-      return 'Moyen'
-    case ConfortEte.insuffisant:
-      return 'Insuffisant'
-  }
-}
-
-export const typeIsolationToString = (value: TypeIsolation): string => {
-  switch (value) {
-    case TypeIsolation.iti:
-      return "Isolation par l'intérieur"
-    case TypeIsolation.ite:
-      return "Isolation par l'extérieur"
-    case TypeIsolation.itr:
-      return 'Isolation répartie'
-    case TypeIsolation.iti_ite:
-      return "Isolation par l'intérieur et par l'extérieur"
-    case TypeIsolation.itr_iti:
-      return "Isolation répartie et par l'intérieur"
-    case TypeIsolation.itr_ite:
-      return "Isolation répartie et par l'extérieur"
-    case TypeIsolation.itr_iti_ite:
-      return "Isolation répartie, par l'intérieur et par l'extérieur"
-  }
-}
-
-export const isolationToString = (value: Isolation): string => {
-  if (null === value.etat_isolation || null === value.type_isolation) {
-    return 'Isolation inconnue'
-  }
-  if (value.etat_isolation === EtatIsolation.non_isole) {
-    return 'Sans isolation'
-  }
-  let text: string = typeIsolationToString(value.type_isolation)
-
-  if (value.epaisseur_isolation) {
-    text += ` - ${value.epaisseur_isolation} mm`
-  }
-  return text
-}
-
 export namespace Mur {
   export type Position = {
     local_non_chauffe_id: string | null
@@ -374,67 +301,6 @@ export namespace Mur {
     lame_air_superieur_15mm = 'lame_air_superieur_15mm',
     materiaux_connu = 'materiaux_connu'
   }
-
-  export const typeStructureToString = (value: Mur.TypeStructure): string => {
-    switch (value) {
-      case Mur.TypeStructure.pierre_moellons:
-        return 'Pierre à moellons'
-      case Mur.TypeStructure.pierre_moellons_avec_remplissage:
-        return 'Pierre à moellons avec remplissage'
-      case Mur.TypeStructure.pise_ou_beton_terre:
-        return 'Pisé ou béton de terre'
-      case Mur.TypeStructure.pan_bois_sans_remplissage:
-        return 'Pan de bois sans remplissage'
-      case Mur.TypeStructure.pan_bois_avec_remplissage:
-        return 'Pan de bois avec remplissage'
-      case Mur.TypeStructure.bois_rondin:
-        return 'Bois rondin'
-      case Mur.TypeStructure.brique_pleine_simple:
-        return 'Brique pleine simple'
-      case Mur.TypeStructure.brique_pleine_double_avec_lame_air:
-        return "Brique pleine double avec lame d'air"
-      case Mur.TypeStructure.brique_creuse:
-        return 'Brique creuse'
-      case Mur.TypeStructure.bloc_beton_plein:
-        return 'Bloc béton plein'
-      case Mur.TypeStructure.bloc_beton_creux:
-        return 'Bloc béton creux'
-      case Mur.TypeStructure.beton_banche:
-        return 'Béton banché'
-      case Mur.TypeStructure.beton_machefer:
-        return 'Béton mâchefer'
-      case Mur.TypeStructure.brique_terre_cuite_alveolaire:
-        return 'Brique terre cuite alvéolaire'
-      case Mur.TypeStructure
-        .sandwich_beton_isolant_beton_sans_isolation_rapportee:
-        return 'Sandwich béton isolant béton sans isolation rapportée'
-      case Mur.TypeStructure.cloison_platre:
-        return 'Cloison plâtre'
-      case Mur.TypeStructure.ossature_bois_sans_remplissage:
-        return 'Ossature bois sans remplissage'
-      case Mur.TypeStructure.ossature_bois_avec_remplissage_tout_venant:
-        return 'Ossature bois avec remplissage tout-venant'
-      case Mur.TypeStructure.ossature_bois_avec_remplissage_isolant:
-        return 'Ossature bois avec remplissage isolant'
-      case Mur.TypeStructure.beton_cellulaire:
-        return 'Béton cellulaire'
-    }
-  }
-
-  export const typeDoublageToString = (value: Mur.TypeDoublage): string => {
-    switch (value) {
-      case Mur.TypeDoublage.sans_doublage:
-        return 'Sans doublage'
-      case Mur.TypeDoublage.indetermine:
-        return 'Indéterminé'
-      case Mur.TypeDoublage.lame_air_inferieur_15mm:
-        return "Lame d'air inférieure à 15 mm"
-      case Mur.TypeDoublage.lame_air_superieur_15mm:
-        return "Lame d'air supérieure à 15 mm"
-      case Mur.TypeDoublage.materiaux_connu:
-        return 'Matériaux connu'
-    }
-  }
 }
 
 export namespace PlancherBas {
@@ -457,36 +323,6 @@ export namespace PlancherBas {
     plancher_bois_sur_solives_bois = 'plancher_bois_sur_solives_bois',
     plancher_lourd_type_entrevous_terre_cuite_ou_poutrelles_beton = 'plancher_lourd_type_entrevous_terre_cuite_ou_poutrelles_beton',
     plancher_entrevous_isolant = 'plancher_entrevous_isolant'
-  }
-
-  export const typeStructureToString = (
-    value: PlancherBas.TypeStructure
-  ): string => {
-    switch (value) {
-      case PlancherBas.TypeStructure.plancher_avec_ou_sans_remplissage:
-        return 'Plancher avec ou sans remplissage'
-      case PlancherBas.TypeStructure.plancher_entre_solives_metalliques:
-        return 'Plancher entre solives métalliques'
-      case PlancherBas.TypeStructure.plancher_entre_solives_bois:
-        return 'Plancher entre solives bois'
-      case PlancherBas.TypeStructure.plancher_bois_sur_solives_metalliques:
-        return 'Plancher bois sur solives métalliques'
-      case PlancherBas.TypeStructure.bardeaux_et_remplissage:
-        return 'Bardeaux et remplissage'
-      case PlancherBas.TypeStructure.voutains_sur_solives_metalliques:
-        return 'Voutains sur solives métalliques'
-      case PlancherBas.TypeStructure.voutains_briques_ou_moellons:
-        return 'Voutains briques ou moellons'
-      case PlancherBas.TypeStructure.dalle_beton:
-        return 'Dalle béton'
-      case PlancherBas.TypeStructure.plancher_bois_sur_solives_bois:
-        return 'Plancher bois sur solives bois'
-      case PlancherBas.TypeStructure
-        .plancher_lourd_type_entrevous_terre_cuite_ou_poutrelles_beton:
-        return 'Plancher lourd type entrevous terre cuite ou poutrelles béton'
-      case PlancherBas.TypeStructure.plancher_entrevous_isolant:
-        return 'Plancher entrevous isolant'
-    }
   }
 }
 
@@ -514,44 +350,35 @@ export namespace PlancherHaut {
     plafond_patre = 'plafond_patre',
     bac_acier = 'bac_acier'
   }
-
-  export const typeStructureToString = (
-    value: PlancherHaut.TypeStructure
-  ): string => {
-    switch (value) {
-      case PlancherHaut.TypeStructure.plafond_avec_ou_sans_remplissage:
-        return 'Plafond avec ou sans remplissage'
-      case PlancherHaut.TypeStructure.plafond_entre_solives_metalliques:
-        return 'Plafond entre solives métalliques'
-      case PlancherHaut.TypeStructure.plafond_entre_solives_bois:
-        return 'Plafond entre solives bois'
-      case PlancherHaut.TypeStructure.plafond_bois_sur_solives_metalliques:
-        return 'Plafond bois sur solives métalliques'
-      case PlancherHaut.TypeStructure.plafond_bois_sous_solives_metalliques:
-        return 'Plafond bois sous solives métalliques'
-      case PlancherHaut.TypeStructure.bardeaux_et_remplissage:
-        return 'Bardeaux et remplissage'
-      case PlancherHaut.TypeStructure.plafond_bois_sur_solives_bois:
-        return 'Plafond bois sur solives bois'
-      case PlancherHaut.TypeStructure.plafond_bois_sous_solives_bois:
-        return 'Plafond bois sous solives bois'
-      case PlancherHaut.TypeStructure.dalle_beton:
-        return 'Dalle béton'
-      case PlancherHaut.TypeStructure.plafond_lourd:
-        return 'Plafond lourd'
-      case PlancherHaut.TypeStructure.combles_amenages_sous_rampant:
-        return 'Combles aménagés sous rampant'
-      case PlancherHaut.TypeStructure.toiture_chaume:
-        return 'Toiture chaume'
-      case PlancherHaut.TypeStructure.plafond_patre:
-        return 'Plafond patre'
-      case PlancherHaut.TypeStructure.bac_acier:
-        return 'Bac acier'
-    }
-  }
 }
 
 export namespace Baie {
+  export interface MasqueProche {
+    id: string
+    description: string
+    type_masque: Baie.TypeMasqueProche
+    profondeur: number | null
+    data?: Partial<MasqueProcheData>
+  }
+
+  export interface MasqueProcheData {
+    fe1: number
+  }
+
+  export interface MasqueLointain {
+    id: string
+    description: string
+    type_masque: Baie.TypeMasqueLointain
+    hauteur: number
+    orientation: number
+    data?: Partial<MasqueLointainData>
+  }
+
+  export interface MasqueLointainData {
+    fe2: number
+    omb: number
+  }
+
   export type Position = {
     local_non_chauffe_id: string | null
     paroi_id: string | null
@@ -577,6 +404,18 @@ export namespace Baie {
   export type Survitrage = {
     type_survitrage: Baie.TypeSurvitrage | null
     epaisseur_lame: number | null
+  }
+
+  export enum TypeMasqueProche {
+    fond_balcon_ou_fond_et_flanc_loggias = 'fond_balcon_ou_fond_et_flanc_loggias',
+    balcon_ou_auvent = 'balcon_ou_auvent',
+    paroi_laterale_sans_obstacle_au_sud = 'paroi_laterale_sans_obstacle_au_sud',
+    paroi_laterale_avec_obstacle_au_sud = 'paroi_laterale_avec_obstacle_au_sud'
+  }
+
+  export enum TypeMasqueLointain {
+    masque_lointain_homogene = 'homogene',
+    masque_lointain_non_homogene = 'non_homogene'
   }
 
   export enum TypeBaie {
@@ -632,41 +471,6 @@ export namespace Baie {
     survitrage_simple = 'survitrage_simple',
     survitrage_fe = 'survitrage_fe'
   }
-
-  export const typeVitrageToString = (value: TypeVitrage): string => {
-    switch (value) {
-      case TypeVitrage.simple_vitrage:
-        return 'Simple vitrage'
-      case TypeVitrage.double_vitrage:
-        return 'Double vitrage'
-      case TypeVitrage.double_vitrage_fe:
-        return 'Double vitrage à faible émissivité'
-      case TypeVitrage.triple_vitrage:
-        return 'Triple vitrage'
-      case TypeVitrage.triple_vitrage_fe:
-        return 'Triple vitrage à faible émissivité'
-    }
-  }
-
-  export const natureLameToString = (value: NatureLame): string => {
-    switch (value) {
-      case NatureLame.air:
-        return 'Air'
-      case NatureLame.argon:
-        return 'Argon'
-      case NatureLame.krypton:
-        return 'Krypton'
-    }
-  }
-
-  export const typeSurvitrageToString = (value: TypeSurvitrage): string => {
-    switch (value) {
-      case TypeSurvitrage.survitrage_simple:
-        return 'Survitrage simple'
-      case TypeSurvitrage.survitrage_fe:
-        return 'Survitrage à faible émissivité'
-    }
-  }
 }
 
 export namespace Porte {
@@ -701,17 +505,6 @@ export namespace Porte {
     double_vitrage = 'double_vitrage',
     triple_vitrage = 'triple_vitrage'
   }
-
-  export const typeVitrageToString = (value: TypeVitrage): string => {
-    switch (value) {
-      case TypeVitrage.simple_vitrage:
-        return 'Simple vitrage'
-      case TypeVitrage.double_vitrage:
-        return 'Double vitrage'
-      case TypeVitrage.triple_vitrage:
-        return 'Triple vitrage'
-    }
-  }
 }
 
 export namespace PontThermique {
@@ -729,22 +522,5 @@ export namespace PontThermique {
     plancher_haut_mur = 'plancher_haut_mur',
     refend_mur = 'refend_mur',
     menuiserie_mur = 'menuiserie_mur'
-  }
-
-  export const typeLiaisonToString = (
-    value: PontThermique.TypeLiaison
-  ): string => {
-    switch (value) {
-      case TypeLiaison.plancher_bas_mur:
-        return 'Plancher bas - Mur'
-      case TypeLiaison.plancher_intermediaire_mur:
-        return 'Plancher intermédiaire - Mur'
-      case TypeLiaison.plancher_haut_mur:
-        return 'Plancher haut - Mur'
-      case TypeLiaison.refend_mur:
-        return 'Refend - Mur'
-      case TypeLiaison.menuiserie_mur:
-        return 'Menuiserie - Mur'
-    }
   }
 }

@@ -57,53 +57,17 @@ export enum TypePerte {
   distribution = 'distribution'
 }
 
-export const usageToString = (value: Usage): string => {
-  switch (value) {
-    case Usage.chauffage:
-      return 'Chauffage'
-    case Usage.ecs:
-      return 'Eau chaude sanitaire'
-    case Usage.refroidissement:
-      return 'Refroidissment'
-    case Usage.auxiliaire:
-      return 'Auxiliaire'
-    case Usage.eclairage:
-      return 'Eclairage'
-  }
-}
-
-export const energieToString = (value: Energie): string => {
-  switch (value) {
-    case Energie.electricite:
-      return 'Electricité'
-    case Energie.gaz_naturel:
-      return 'Gaz naturel'
-    case Energie.gpl:
-      return 'GPL'
-    case Energie.fioul:
-      return 'Fioul'
-    case Energie.charbon:
-      return 'Charbon'
-    case Energie.bois_buche:
-      return 'Bois - Bûche'
-    case Energie.bois_plaquette:
-      return 'Bois - Plaquette'
-    case Energie.bois_granule:
-      return 'Bois - Granulé'
-    case Energie.reseau_chaleur:
-      return 'Réseau de chaleur'
-    case Energie.reseau_froid:
-      return 'Réseau de froid'
-  }
-}
-
-export const typePerteToString = (value: TypePerte): string => {
-  switch (value) {
-    case TypePerte.generation:
-      return 'Génération'
-    case TypePerte.stockage:
-      return 'Stockage'
-    case TypePerte.distribution:
-      return 'Distribution'
-  }
+export enum Mois {
+  janvier = '01',
+  fevrier = '02',
+  mars = '03',
+  avril = '04',
+  mai = '05',
+  juin = '06',
+  juillet = '07',
+  aout = '08',
+  septembre = '09',
+  octobre = '10',
+  novembre = '11',
+  decembre = '12'
 }
