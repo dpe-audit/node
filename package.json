@@ -1,8 +1,10 @@
 {
   "name": "dpe-audit",
-  "version": "0.2.5",
+  "version": "0.2.6",
+  "type": "module",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "module": "./dist/index.mjs",
+  "types": "dist/index.d.js",
   "license": "MIT",
   "author": "Adrien Rosi Dit Rozzi",
   "bugs": "https://github.com/action-21/dpe-audit-ts/issues",
@@ -10,11 +12,10 @@
     "dist/"
   ],
   "scripts": {
-    "build": "tsc --build tsconfig.build.json"
+    "build": "tsup"
   },
   "devDependencies": {
-    "@types/node": "^22.15.3",
-    "ts-node": "^10.9.2",
+    "tsup": "^8.4.0",
     "typescript": "^5.8.3"
   },
   "dependencies": {

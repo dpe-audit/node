@@ -14,5 +14,5 @@ export const send = async <T>(operation: {
     headers
   })
 
-  return response.json()
+  return response.json() as T
 }
