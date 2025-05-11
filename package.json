@@ -1,9 +1,9 @@
 {
   "name": "dpe-audit",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.js",
   "license": "MIT",
   "author": "Adrien Rosi Dit Rozzi",
@@ -11,6 +11,13 @@
   "files": [
     "dist/"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "scripts": {
     "build": "tsup"
   },
