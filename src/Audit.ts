@@ -160,3 +160,17 @@ export enum EtiquetteClimat {
   F = 'F',
   G = 'G'
 }
+
+export const typeBatimentToString = (type: TypeBatiment): string => {
+  switch (type) {
+    case TypeBatiment.maison:
+      return 'Maison individuelle'
+    case TypeBatiment.immeuble:
+      return 'Immeuble'
+  }
+}
+
+export const adresseToString = (adresse: Adresse): string => {
+  const { numero, nom, code_postal, commune } = adresse
+  return `${numero ? numero + ' ' : ''}${nom}, ${code_postal} ${commune}`
+}

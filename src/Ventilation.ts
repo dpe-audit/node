@@ -2,7 +2,9 @@ import { Consommation, Emission } from './common'
 import { NotFound } from './errors'
 import { send } from './request'
 
-export const retrieveVentilation = async (id: string): Promise<Ventilation | NotFound> => {
+export const retrieveVentilation = async (
+  id: string
+): Promise<Ventilation | NotFound> => {
   return send<Ventilation | NotFound>({
     method: 'GET',
     path: `/audit/${id}/ventilation`
@@ -33,12 +35,6 @@ export interface Generateur {
   annee_installation: number | null
   type_vmc: TypeVmc | null
   data?: Partial<GenerateurData>
-}
-
-export class Generateurs extends Array<Generateur> {
-  findById (id: string): Generateur | undefined {
-    return this.find(item => item.id === id)
-  }
 }
 
 export type GenerateurData = {
@@ -106,4 +102,53 @@ export enum TypeVentilation {
   ventilation_naturelle_entrees_air_hautes_basses = 'ventilation_naturelle_entrees_air_hautes_basses',
   ventilation_naturelle_conduit = 'ventilation_naturelle_conduit',
   ventilation_naturelle_conduit_entrees_air_hygroreglables = 'ventilation_naturelle_conduit_entrees_air_hygroreglables'
+}
+
+export const typeGenerateurToString = (value: TypeGenerateur): string => {
+  switch (value) {
+    case TypeGenerateur.vmc_simple_flux:
+      return 'VMC simple flux'
+    case TypeGenerateur.vmc_simple_flux_gaz:
+      return 'VMC simple flux gaz'
+    case TypeGenerateur.vmc_basse_pression:
+      return 'VMC basse pression'
+    case TypeGenerateur.vmc_double_flux:
+      return 'VMC double flux'
+    case TypeGenerateur.vmi:
+      return 'VMI'
+    case TypeGenerateur.ventilation_hybride:
+      return 'Ventilation hybride'
+    case TypeGenerateur.ventilation_mecanique:
+      return 'Ventilation mécanique'
+    case TypeGenerateur.puit_climatique:
+      return 'Puit climatique'
+    case TypeGenerateur.vmr:
+      return 'VMR'
+  }
+}
+
+export const typeVmcToString = (value: TypeVmc): string => {
+  switch (value) {
+    case TypeVmc.autoreglable:
+      return 'Autoreglable'
+    case TypeVmc.hygroreglable_type_a:
+      return 'Hygroreglable type A'
+    case TypeVmc.hygroreglable_type_b:
+      return 'Hygroreglable type B'
+  }
+}
+
+export const typeVentilationToString = (value: TypeVentilation): string => {
+  switch (value) {
+    case TypeVentilation.ventilation_mecanique:
+      return 'Ventilation mécanique'
+    case TypeVentilation.ventilation_naturelle_ouverture_fenetres:
+      return 'Ventilation naturelle par ouverture fenêtres'
+    case TypeVentilation.ventilation_naturelle_entrees_air_hautes_basses:
+      return 'Ventilation naturelle par entrées air hautes basses'
+    case TypeVentilation.ventilation_naturelle_conduit:
+      return 'Ventilation naturelle sur conduit'
+    case TypeVentilation.ventilation_naturelle_conduit_entrees_air_hygroreglables:
+      return 'Ventilation naturelle sur conduit avec entrées air hygroreglables'
+  }
 }

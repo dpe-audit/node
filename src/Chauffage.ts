@@ -245,3 +245,164 @@ export enum ConfigurationSysteme {
   releve = 'releve',
   appoint = 'appoint'
 }
+
+export const typeGenerateurToString = (value: TypeGenerateur): string => {
+  switch (value) {
+    case TypeGenerateur.chaudiere:
+      return 'Chaudière'
+    case TypeGenerateur.convecteur_bi_jonction:
+      return 'Convecteur bi-jonction'
+    case TypeGenerateur.convecteur_electrique:
+      return 'Convecteur électrique'
+    case TypeGenerateur.cuisiniere:
+      return 'Cuisinière'
+    case TypeGenerateur.foyer_ferme:
+      return 'Foyer fermé'
+    case TypeGenerateur.generateur_air_chaud:
+      return 'Générateur air chaud'
+    case TypeGenerateur.insert:
+      return 'Insert'
+    case TypeGenerateur.pac_air_air:
+      return 'PAC air-air'
+    case TypeGenerateur.pac_air_eau:
+      return 'PAC air-eau'
+    case TypeGenerateur.pac_eau_eau:
+      return 'PAC eau-eau'
+    case TypeGenerateur.pac_eau_glycolee_eau:
+      return 'PAC eau glycolée-eau'
+    case TypeGenerateur.pac_geothermique:
+      return 'PAC géothermique'
+    case TypeGenerateur.pac_hybride_air_eau:
+      return 'PAC hybride air-eau'
+    case TypeGenerateur.pac_hybride_eau_eau:
+      return 'PAC hybride eau-eau'
+    case TypeGenerateur.pac_hybride_eau_glycolee_eau:
+      return 'PAC hybride eau glycolée-eau'
+    case TypeGenerateur.pac_hybride_geothermique:
+      return 'PAC hybride géothermique'
+    case TypeGenerateur.panneau_rayonnant_electrique:
+      return 'Panneau rayonnant électrique'
+    case TypeGenerateur.plafond_rayonnant_electrique:
+      return 'Plafond rayonnant électrique'
+    case TypeGenerateur.plancher_rayonnant_electrique:
+      return 'Plancher rayonnant électrique'
+    case TypeGenerateur.poele:
+      return 'Poêle'
+    case TypeGenerateur.poele_bouilleur:
+      return 'Poêle bouilleur'
+    case TypeGenerateur.radiateur_electrique:
+      return 'Radiateur électrique'
+    case TypeGenerateur.radiateur_electrique_accumulation:
+      return 'Radiateur électrique à accumulation'
+    case TypeGenerateur.radiateur_gaz:
+      return 'Radiateur gaz'
+    case TypeGenerateur.reseau_chaleur:
+      return 'Réseau de chaleur'
+  }
+}
+
+export const labelGenerateurToString = (value: LabelGenerateur): string => {
+  switch (value) {
+    case LabelGenerateur.flamme_verte:
+      return 'Flamme verte'
+    case LabelGenerateur.nf_performance:
+      return 'NF performance'
+  }
+}
+
+export const typeChaudiereToString = (value: TypeChaudiere): string => {
+  switch (value) {
+    case TypeChaudiere.chaudiere_murale:
+      return 'Chaudière murale'
+    case TypeChaudiere.chaudiere_sol:
+      return 'Chaudière sol'
+  }
+}
+
+export const modeCombustionToString = (value: ModeCombustion): string => {
+  switch (value) {
+    case ModeCombustion.standard:
+      return 'Standard'
+    case ModeCombustion.basse_temperature:
+      return 'Basse température'
+    case ModeCombustion.condensation:
+      return 'Condensation'
+  }
+}
+
+export const typeEmetteurToString = (value: TypeEmetteur): string => {
+  switch (value) {
+    case TypeEmetteur.plancher_chauffant:
+      return 'Plancher chauffant'
+    case TypeEmetteur.plafond_chauffant:
+      return 'Plafond chauffant'
+    case TypeEmetteur.radiateur_monotube:
+      return 'Radiateur monotube'
+    case TypeEmetteur.radiateur_bitube:
+      return 'Radiateur bitube'
+    case TypeEmetteur.radiateur:
+      return 'Radiateur'
+  }
+}
+
+export const temperatureDistributionToString = (
+  value: TemperatureDistribution
+): string => {
+  switch (value) {
+    case TemperatureDistribution.basse:
+      return 'Basse température'
+    case TemperatureDistribution.moyenne:
+      return 'Moyenne température'
+    case TemperatureDistribution.haute:
+      return 'Haute température'
+  }
+}
+
+export const usageToString = (value: Usage): string => {
+  switch (value) {
+    case Usage.chauffage:
+      return 'Chauffage'
+    case Usage.chauffage_ecs:
+      return 'Chauffage et ECS'
+  }
+}
+
+export const typeDistributionToString = (value: TypeDistribution): string => {
+  switch (value) {
+    case TypeDistribution.hydraulique:
+      return 'Hydraulique'
+    case TypeDistribution.aeraulique:
+      return 'Aéraulique'
+  }
+}
+
+export const isolationToString = (value: Isolation): string => {
+  switch (value) {
+    case Isolation.isole:
+      return 'Isolé'
+    case Isolation.non_isole:
+      return 'Non isolé'
+  }
+}
+
+export const configurationSystemeToString = (
+  value: ConfigurationSysteme
+): string => {
+  switch (value) {
+    case ConfigurationSysteme.base:
+      return 'Base'
+    case ConfigurationSysteme.releve:
+      return 'Relevé'
+    case ConfigurationSysteme.appoint:
+      return 'Appoint'
+  }
+}
+
+export const typeChauffageToString = (value: TypeChauffage): string => {
+  switch (value) {
+    case TypeChauffage.chauffage_divise:
+      return 'Chauffage divisé'
+    case TypeChauffage.chauffage_central:
+      return 'Chauffage central'
+  }
+}

@@ -9,9 +9,7 @@ import {
 import { NotFound } from './errors'
 import { send } from './request'
 
-export const retrieveEcs = async (
-  id: string
-): Promise<Ecs | NotFound> => {
+export const retrieveEcs = async (id: string): Promise<Ecs | NotFound> => {
   return send<Ecs | NotFound>({
     method: 'GET',
     path: `/audit/${id}/ecs`
@@ -181,4 +179,91 @@ export enum Bouclage {
   reseau_non_boucle = 'reseau_non_boucle',
   reseau_boucle = 'reseau_boucle',
   reseau_trace = 'reseau_trace'
+}
+
+export const typeGenerateurToString = (value: TypeGenerateur): string => {
+  switch (value) {
+    case TypeGenerateur.accumulateur:
+      return 'Accumulateur'
+    case TypeGenerateur.chauffe_eau_instantane:
+      return 'Chauffe-eau instantané'
+    case TypeGenerateur.chauffe_eau_vertical:
+      return 'Chauffe-eau vertical'
+    case TypeGenerateur.chauffe_eau_horizontal:
+      return 'Chauffe-eau horizontal'
+    case TypeGenerateur.chaudiere:
+      return 'Chaudière'
+    case TypeGenerateur.cet_air_ambiant:
+      return 'CET air ambiant'
+    case TypeGenerateur.cet_air_exterieur:
+      return 'CET air extérieur'
+    case TypeGenerateur.cet_air_extrait:
+      return 'CET air extrait'
+    case TypeGenerateur.pac_double_service:
+      return 'PAC double service'
+    case TypeGenerateur.poele_bouilleur:
+      return 'Poêle bouilleur'
+    case TypeGenerateur.reseau_chaleur:
+      return 'Réseau de chaleur'
+  }
+}
+
+export const labelGenerateurToString = (value: LabelGenerateur): string => {
+  switch (value) {
+    case LabelGenerateur.ne_performance_a:
+      return 'NE - Performance A'
+    case LabelGenerateur.ne_performance_b:
+      return 'NE - Performance B'
+    case LabelGenerateur.ne_performance_c:
+      return 'NE - Performance C'
+  }
+}
+
+export const typeChaudiereToString = (value: TypeChaudiere): string => {
+  switch (value) {
+    case TypeChaudiere.chaudiere_murale:
+      return 'Chaudière murale'
+    case TypeChaudiere.chaudiere_sol:
+      return 'Chaudière sol'
+  }
+}
+
+export const modeCombustionToString = (value: ModeCombustion): string => {
+  switch (value) {
+    case ModeCombustion.standard:
+      return 'Standard'
+    case ModeCombustion.basse_temperature:
+      return 'Basse température'
+    case ModeCombustion.condensation:
+      return 'Condensation'
+  }
+}
+
+export const usageToString = (value: Usage): string => {
+  switch (value) {
+    case Usage.ecs:
+      return 'Eau chaude sanitaire'
+    case Usage.chauffage_ecs:
+      return 'Chauffage et eau chaude sanitaire'
+  }
+}
+
+export const isolationToString = (value: Isolation): string => {
+  switch (value) {
+    case Isolation.isole:
+      return 'Isolé'
+    case Isolation.non_isole:
+      return 'Non isolé'
+  }
+}
+
+export const bouclageToString = (value: Bouclage): string => {
+  switch (value) {
+    case Bouclage.reseau_non_boucle:
+      return 'Réseau non bouclé'
+    case Bouclage.reseau_boucle:
+      return 'Réseau bouclé'
+    case Bouclage.reseau_trace:
+      return 'Réseau trace'
+  }
 }

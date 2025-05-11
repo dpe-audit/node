@@ -82,3 +82,24 @@ export type EnergieGenerateur = Extract<
   Energie,
   Energie.electricite | Energie.gaz_naturel | Energie.gpl | Energie.reseau_froid
 >
+
+export const typeGenerateurToString = (value: TypeGenerateur): string => {
+  switch (value) {
+    case TypeGenerateur.pac_air_air:
+      return 'PAC air/air'
+    case TypeGenerateur.pac_air_eau:
+      return 'PAC air/eau'
+    case TypeGenerateur.pac_eau_eau:
+      return 'PAC eau/eau'
+    case TypeGenerateur.pac_eau_glycolee_eau:
+      return 'PAC eau glycolée/eau'
+    case TypeGenerateur.pac_geothermique:
+      return 'PAC géothermique'
+    case TypeGenerateur.reseau_froid:
+      return 'Réseau froid'
+    case TypeGenerateur.autre_systeme_thermodynamique:
+      return 'Autre système thermodynamique'
+    case TypeGenerateur.autre:
+      return 'Autre'
+  }
+}

@@ -301,6 +301,67 @@ export namespace Mur {
     lame_air_superieur_15mm = 'lame_air_superieur_15mm',
     materiaux_connu = 'materiaux_connu'
   }
+
+  export const typeStructureToString = (value: Mur.TypeStructure): string => {
+    switch (value) {
+      case Mur.TypeStructure.pierre_moellons:
+        return 'Pierre à moellons'
+      case Mur.TypeStructure.pierre_moellons_avec_remplissage:
+        return 'Pierre à moellons avec remplissage'
+      case Mur.TypeStructure.pise_ou_beton_terre:
+        return 'Pisé ou béton de terre'
+      case Mur.TypeStructure.pan_bois_sans_remplissage:
+        return 'Pan de bois sans remplissage'
+      case Mur.TypeStructure.pan_bois_avec_remplissage:
+        return 'Pan de bois avec remplissage'
+      case Mur.TypeStructure.bois_rondin:
+        return 'Bois rondin'
+      case Mur.TypeStructure.brique_pleine_simple:
+        return 'Brique pleine simple'
+      case Mur.TypeStructure.brique_pleine_double_avec_lame_air:
+        return "Brique pleine double avec lame d'air"
+      case Mur.TypeStructure.brique_creuse:
+        return 'Brique creuse'
+      case Mur.TypeStructure.bloc_beton_plein:
+        return 'Bloc béton plein'
+      case Mur.TypeStructure.bloc_beton_creux:
+        return 'Bloc béton creux'
+      case Mur.TypeStructure.beton_banche:
+        return 'Béton banché'
+      case Mur.TypeStructure.beton_machefer:
+        return 'Béton mâchefer'
+      case Mur.TypeStructure.brique_terre_cuite_alveolaire:
+        return 'Brique terre cuite alvéolaire'
+      case Mur.TypeStructure
+        .sandwich_beton_isolant_beton_sans_isolation_rapportee:
+        return 'Sandwich béton isolant béton sans isolation rapportée'
+      case Mur.TypeStructure.cloison_platre:
+        return 'Cloison plâtre'
+      case Mur.TypeStructure.ossature_bois_sans_remplissage:
+        return 'Ossature bois sans remplissage'
+      case Mur.TypeStructure.ossature_bois_avec_remplissage_tout_venant:
+        return 'Ossature bois avec remplissage tout-venant'
+      case Mur.TypeStructure.ossature_bois_avec_remplissage_isolant:
+        return 'Ossature bois avec remplissage isolant'
+      case Mur.TypeStructure.beton_cellulaire:
+        return 'Béton cellulaire'
+    }
+  }
+
+  export const typeDoublageToString = (value: Mur.TypeDoublage): string => {
+    switch (value) {
+      case Mur.TypeDoublage.sans_doublage:
+        return 'Sans doublage'
+      case Mur.TypeDoublage.indetermine:
+        return 'Indéterminé'
+      case Mur.TypeDoublage.lame_air_inferieur_15mm:
+        return "Lame d'air inférieure à 15 mm"
+      case Mur.TypeDoublage.lame_air_superieur_15mm:
+        return "Lame d'air supérieure à 15 mm"
+      case Mur.TypeDoublage.materiaux_connu:
+        return 'Matériaux connu'
+    }
+  }
 }
 
 export namespace PlancherBas {
@@ -323,6 +384,36 @@ export namespace PlancherBas {
     plancher_bois_sur_solives_bois = 'plancher_bois_sur_solives_bois',
     plancher_lourd_type_entrevous_terre_cuite_ou_poutrelles_beton = 'plancher_lourd_type_entrevous_terre_cuite_ou_poutrelles_beton',
     plancher_entrevous_isolant = 'plancher_entrevous_isolant'
+  }
+
+  export const typeStructureToString = (
+    value: PlancherBas.TypeStructure
+  ): string => {
+    switch (value) {
+      case PlancherBas.TypeStructure.plancher_avec_ou_sans_remplissage:
+        return 'Plancher avec ou sans remplissage'
+      case PlancherBas.TypeStructure.plancher_entre_solives_metalliques:
+        return 'Plancher entre solives métalliques'
+      case PlancherBas.TypeStructure.plancher_entre_solives_bois:
+        return 'Plancher entre solives bois'
+      case PlancherBas.TypeStructure.plancher_bois_sur_solives_metalliques:
+        return 'Plancher bois sur solives métalliques'
+      case PlancherBas.TypeStructure.bardeaux_et_remplissage:
+        return 'Bardeaux et remplissage'
+      case PlancherBas.TypeStructure.voutains_sur_solives_metalliques:
+        return 'Voutains sur solives métalliques'
+      case PlancherBas.TypeStructure.voutains_briques_ou_moellons:
+        return 'Voutains briques ou moellons'
+      case PlancherBas.TypeStructure.dalle_beton:
+        return 'Dalle béton'
+      case PlancherBas.TypeStructure.plancher_bois_sur_solives_bois:
+        return 'Plancher bois sur solives bois'
+      case PlancherBas.TypeStructure
+        .plancher_lourd_type_entrevous_terre_cuite_ou_poutrelles_beton:
+        return 'Plancher lourd type entrevous terre cuite ou poutrelles béton'
+      case PlancherBas.TypeStructure.plancher_entrevous_isolant:
+        return 'Plancher entrevous isolant'
+    }
   }
 }
 
@@ -349,6 +440,41 @@ export namespace PlancherHaut {
     toiture_chaume = 'toiture_chaume',
     plafond_patre = 'plafond_patre',
     bac_acier = 'bac_acier'
+  }
+
+  export const typeStructureToString = (
+    value: PlancherHaut.TypeStructure
+  ): string => {
+    switch (value) {
+      case PlancherHaut.TypeStructure.plafond_avec_ou_sans_remplissage:
+        return 'Plafond avec ou sans remplissage'
+      case PlancherHaut.TypeStructure.plafond_entre_solives_metalliques:
+        return 'Plafond entre solives métalliques'
+      case PlancherHaut.TypeStructure.plafond_entre_solives_bois:
+        return 'Plafond entre solives bois'
+      case PlancherHaut.TypeStructure.plafond_bois_sur_solives_metalliques:
+        return 'Plafond bois sur solives métalliques'
+      case PlancherHaut.TypeStructure.plafond_bois_sous_solives_metalliques:
+        return 'Plafond bois sous solives métalliques'
+      case PlancherHaut.TypeStructure.bardeaux_et_remplissage:
+        return 'Bardeaux et remplissage'
+      case PlancherHaut.TypeStructure.plafond_bois_sur_solives_bois:
+        return 'Plafond bois sur solives bois'
+      case PlancherHaut.TypeStructure.plafond_bois_sous_solives_bois:
+        return 'Plafond bois sous solives bois'
+      case PlancherHaut.TypeStructure.dalle_beton:
+        return 'Dalle béton'
+      case PlancherHaut.TypeStructure.plafond_lourd:
+        return 'Plafond lourd'
+      case PlancherHaut.TypeStructure.combles_amenages_sous_rampant:
+        return 'Combles aménagés sous rampant'
+      case PlancherHaut.TypeStructure.toiture_chaume:
+        return 'Toiture chaume'
+      case PlancherHaut.TypeStructure.plafond_patre:
+        return 'Plafond patre'
+      case PlancherHaut.TypeStructure.bac_acier:
+        return 'Bac acier'
+    }
   }
 }
 
@@ -471,6 +597,132 @@ export namespace Baie {
     survitrage_simple = 'survitrage_simple',
     survitrage_fe = 'survitrage_fe'
   }
+
+  export const typeMasqueProcheToString = (value: TypeMasqueProche): string => {
+    switch (value) {
+      case TypeMasqueProche.fond_balcon_ou_fond_et_flanc_loggias:
+        return 'Fond de balcon ou fond et flanc loggias'
+      case TypeMasqueProche.balcon_ou_auvent:
+        return 'Balcon ou auvent'
+      case TypeMasqueProche.paroi_laterale_sans_obstacle_au_sud:
+        return 'Paroi latérale sans obstacle au sud'
+      case TypeMasqueProche.paroi_laterale_avec_obstacle_au_sud:
+        return 'Paroi latérale avec obstacle au sud'
+    }
+  }
+
+  export const typeMasqueLointainToString = (
+    value: TypeMasqueLointain
+  ): string => {
+    switch (value) {
+      case TypeMasqueLointain.masque_lointain_homogene:
+        return 'Masque lointain homogène'
+      case TypeMasqueLointain.masque_lointain_non_homogene:
+        return 'Masque lointain non homogène'
+    }
+  }
+
+  export const typeBaieToString = (value: TypeBaie): string => {
+    switch (value) {
+      case TypeBaie.brique_verre_pleine:
+        return 'Brique verre pleine'
+      case TypeBaie.brique_verre_creuse:
+        return 'Brique verre creuse'
+      case TypeBaie.polycarbonate:
+        return 'Polycarbonate'
+      case TypeBaie.fenetre_battante:
+        return 'Fenêtre battante'
+      case TypeBaie.fenetre_coulissante:
+        return 'Fenêtre coulissante'
+      case TypeBaie.porte_fenetre_coulissante:
+        return 'Porte-fenêtre coulissante'
+      case TypeBaie.porte_fenetre_battante:
+        return 'Porte-fenêtre battante'
+    }
+  }
+
+  export const typeFermetureToString = (value: TypeFermeture): string => {
+    switch (value) {
+      case TypeFermeture.sans_fermeture:
+        return 'Sans fermeture'
+      case TypeFermeture.jalousie_accordeon:
+        return 'Jalousie accordéon'
+      case TypeFermeture.fermeture_lames_orientables:
+        return 'Fermeture lames orientables'
+      case TypeFermeture.venitiens_exterieurs_metal:
+        return 'Vénitiens extérieurs métal'
+      case TypeFermeture.volet_battant_avec_ajours_fixes:
+        return 'Volet battant avec ajours fixes'
+      case TypeFermeture.persiennes_avec_ajours_fixes:
+        return 'Persiennes avec ajours fixes'
+      case TypeFermeture.fermeture_sans_ajours:
+        return 'Fermeture sans ajours'
+      case TypeFermeture.volets_roulants_aluminium:
+        return 'Volets roulants aluminium'
+      case TypeFermeture.volets_roulants_pvc_bois_epaisseur_lte_12mm:
+        return 'Volets roulants PVC/bois épaisseur ≤ 12 mm'
+      case TypeFermeture.volets_roulants_pvc_bois_epaisseur_gt_12mm:
+        return 'Volets roulants PVC/bois épaisseur > 12 mm'
+      case TypeFermeture.persienne_coulissante_epaisseur_lte_22mm:
+        return 'Persienne coulissante épaisseur ≤ 22 mm'
+      case TypeFermeture.persienne_coulissante_epaisseur_gt_22mm:
+        return 'Persienne coulissante épaisseur > 22 mm'
+      case TypeFermeture.volet_battant_pvc_bois_epaisseur_lte_22mm:
+        return 'Volet battant PVC/bois épaisseur ≤ 22 mm'
+      case TypeFermeture.volet_battant_pvc_bois_epaisseur_gt_22mm:
+        return 'Volet battant PVC/bois épaisseur > 22 mm'
+      case TypeFermeture.fermeture_isolee_sans_ajours:
+        return 'Fermeture isolée sans ajours'
+    }
+  }
+
+  export const materiauToString = (value: Materiau): string => {
+    switch (value) {
+      case Materiau.pvc:
+        return 'PVC'
+      case Materiau.bois:
+        return 'Bois'
+      case Materiau.bois_metal:
+        return 'Bois métal'
+      case Materiau.metal:
+        return 'Métal'
+    }
+  }
+
+  export const typeVitrageToString = (value: TypeVitrage): string => {
+    switch (value) {
+      case TypeVitrage.simple_vitrage:
+        return 'Simple vitrage'
+      case TypeVitrage.double_vitrage:
+        return 'Double vitrage'
+      case TypeVitrage.double_vitrage_fe:
+        return 'Double vitrage à faible émissivité'
+      case TypeVitrage.triple_vitrage:
+        return 'Triple vitrage'
+      case TypeVitrage.triple_vitrage_fe:
+        return 'Triple vitrage à faible émissivité'
+    }
+  }
+
+  export const natureLameToString = (value: NatureLame): string => {
+    switch (value) {
+      case NatureLame.air:
+        return 'Air'
+      case NatureLame.argon:
+        return 'Argon'
+      case NatureLame.krypton:
+        return 'Krypton'
+    }
+  }
+
+  export const typeSurvitrageToString = (value: TypeSurvitrage): string => {
+    switch (value) {
+      case TypeSurvitrage.survitrage_simple:
+        return 'Survitrage simple'
+      case TypeSurvitrage.survitrage_fe:
+        return 'Survitrage à faible émissivité'
+    }
+  }
 }
 
 export namespace Porte {
@@ -505,6 +757,30 @@ export namespace Porte {
     double_vitrage = 'double_vitrage',
     triple_vitrage = 'triple_vitrage'
   }
+
+  export const materiauToString = (value: Materiau): string => {
+    switch (value) {
+      case Materiau.pvc:
+        return 'PVC'
+      case Materiau.bois:
+        return 'Bois'
+      case Materiau.bois_metal:
+        return 'Bois métal'
+      case Materiau.metal:
+        return 'Métal'
+    }
+  }
+
+  export const typeVitrageToString = (value: TypeVitrage): string => {
+    switch (value) {
+      case TypeVitrage.simple_vitrage:
+        return 'Simple vitrage'
+      case TypeVitrage.double_vitrage:
+        return 'Double vitrage'
+      case TypeVitrage.triple_vitrage:
+        return 'Triple vitrage'
+    }
+  }
 }
 
 export namespace PontThermique {
@@ -523,4 +799,79 @@ export namespace PontThermique {
     refend_mur = 'refend_mur',
     menuiserie_mur = 'menuiserie_mur'
   }
+
+  export const typeLiaisonToString = (
+    value: PontThermique.TypeLiaison
+  ): string => {
+    switch (value) {
+      case TypeLiaison.plancher_bas_mur:
+        return 'Plancher bas - Mur'
+      case TypeLiaison.plancher_intermediaire_mur:
+        return 'Plancher intermédiaire - Mur'
+      case TypeLiaison.plancher_haut_mur:
+        return 'Plancher haut - Mur'
+      case TypeLiaison.refend_mur:
+        return 'Refend - Mur'
+      case TypeLiaison.menuiserie_mur:
+        return 'Menuiserie - Mur'
+    }
+  }
+}
+
+export const performanceToString = (value: Performance): string => {
+  switch (value) {
+    case Performance.tres_bonne:
+      return 'Très bonne'
+    case Performance.bonne:
+      return 'Bonne'
+    case Performance.moyenne:
+      return 'Moyenne'
+    case Performance.insuffisante:
+      return 'Insuffisante'
+  }
+}
+
+export const confortEteToString = (value: ConfortEte): string => {
+  switch (value) {
+    case ConfortEte.bon:
+      return 'Bon'
+    case ConfortEte.moyen:
+      return 'Moyen'
+    case ConfortEte.insuffisant:
+      return 'Insuffisant'
+  }
+}
+
+export const typeIsolationToString = (value: TypeIsolation): string => {
+  switch (value) {
+    case TypeIsolation.iti:
+      return "Isolation par l'intérieur"
+    case TypeIsolation.ite:
+      return "Isolation par l'extérieur"
+    case TypeIsolation.itr:
+      return 'Isolation répartie'
+    case TypeIsolation.iti_ite:
+      return "Isolation par l'intérieur et par l'extérieur"
+    case TypeIsolation.itr_iti:
+      return "Isolation répartie et par l'intérieur"
+    case TypeIsolation.itr_ite:
+      return "Isolation répartie et par l'extérieur"
+    case TypeIsolation.itr_iti_ite:
+      return "Isolation répartie, par l'intérieur et par l'extérieur"
+  }
+}
+
+export const isolationToString = (value: Isolation): string => {
+  if (null === value.etat_isolation || null === value.type_isolation) {
+    return 'Isolation inconnue'
+  }
+  if (value.etat_isolation === EtatIsolation.non_isole) {
+    return 'Sans isolation'
+  }
+  let text: string = typeIsolationToString(value.type_isolation)
+
+  if (value.epaisseur_isolation) {
+    text += ` - ${value.epaisseur_isolation} mm`
+  }
+  return text
 }

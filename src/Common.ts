@@ -71,3 +71,92 @@ export enum Mois {
   novembre = '11',
   decembre = '12'
 }
+
+export const scenarioToString = (value: Scenario): string => {
+  switch (value) {
+    case Scenario.conventionnel:
+      return 'Conventionnel'
+    case Scenario.depensier:
+      return 'Dépensier'
+  }
+}
+
+export const usageToString = (value: Usage): string => {
+  switch (value) {
+    case Usage.chauffage:
+      return 'Chauffage'
+    case Usage.ecs:
+      return 'Eau chaude sanitaire'
+    case Usage.refroidissement:
+      return 'Refroidissement'
+    case Usage.eclairage:
+      return 'Eclairage'
+    case Usage.auxiliaire:
+      return 'Auxiliaire'
+  }
+}
+
+export const energieToString = (value: Energie): string => {
+  switch (value) {
+    case Energie.electricite:
+      return 'Electricité'
+    case Energie.gaz_naturel:
+      return 'Gaz naturel'
+    case Energie.gpl:
+      return 'GPL'
+    case Energie.fioul:
+      return 'Fioul'
+    case Energie.charbon:
+      return 'Charbon'
+    case Energie.bois_buche:
+      return 'Bois bûche'
+    case Energie.bois_plaquette:
+      return 'Bois plaquette'
+    case Energie.bois_granule:
+      return 'Bois granulé'
+    case Energie.reseau_chaleur:
+      return 'Réseau de chaleur'
+    case Energie.reseau_froid:
+      return 'Réseau de froid'
+  }
+}
+
+export const typePerteToString = (value: TypePerte): string => {
+  switch (value) {
+    case TypePerte.generation:
+      return 'Génération'
+    case TypePerte.stockage:
+      return 'Stockage'
+    case TypePerte.distribution:
+      return 'Distribution'
+  }
+}
+
+export const moisToString = (value: Mois): string => {
+  switch (value) {
+    case Mois.janvier:
+      return 'Janvier'
+    case Mois.fevrier:
+      return 'Février'
+    case Mois.mars:
+      return 'Mars'
+    case Mois.avril:
+      return 'Avril'
+    case Mois.mai:
+      return 'Mai'
+    case Mois.juin:
+      return 'Juin'
+    case Mois.juillet:
+      return 'Juillet'
+    case Mois.aout:
+      return 'Août'
+    case Mois.septembre:
+      return 'Septembre'
+    case Mois.octobre:
+      return 'Octobre'
+    case Mois.novembre:
+      return 'Novembre'
+    case Mois.decembre:
+      return 'Décembre'
+  }
+}
