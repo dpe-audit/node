@@ -1,4 +1,4 @@
-import {
+import type {
   Besoin,
   Consommation,
   Emission,
@@ -6,7 +6,7 @@ import {
   Perte,
   Scenario
 } from './common'
-import { NotFound } from './errors'
+import type { NotFound } from './errors'
 import { send } from './request'
 
 export const retrieveEcs = async (id: string): Promise<Ecs | NotFound> => {

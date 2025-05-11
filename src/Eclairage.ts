@@ -1,5 +1,5 @@
-import { Consommation, Emission } from './common'
-import { NotFound } from './errors'
+import type { Consommation, Emission } from './common'
+import type { NotFound } from './errors'
 import { send } from './request'
 
 export const retrieveEclairage = async (

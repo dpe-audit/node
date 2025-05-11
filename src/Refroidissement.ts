@@ -1,5 +1,5 @@
-import { Besoin, Consommation, Emission, Energie } from './common'
-import { NotFound } from './errors'
+import type { Besoin, Consommation, Emission, Energie } from './common'
+import type { NotFound } from './errors'
 import { send } from './request'
 
 export const retrieveRefroidissement = async (

@@ -1,4 +1,4 @@
-import { NotFound } from './errors'
+import type { NotFound } from './errors'
 import { send } from './request'
 
 export const retrieveEnveloppe = async (
