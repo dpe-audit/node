@@ -95,7 +95,6 @@ export type AuditData = {
   hauteur_sous_plafond: number
   volume_habitable: number
   nombre_logements: number
-  type_batiment: TypeBatiment
   tbase: number
   zone_climatique: ZoneClimatique
   consommations: Consommation[]
@@ -107,6 +106,7 @@ export type AuditData = {
 }
 
 export type Batiment = {
+  type_batiment: TypeBatiment
   annee_construction: number
   altitude: number
   logements: number
