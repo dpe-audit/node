@@ -106,7 +106,7 @@ export type AuditData = {
 }
 
 export type Batiment = {
-  type_batiment: TypeBatiment
+  type: TypeBatiment
   annee_construction: number
   altitude: number
   logements: number
