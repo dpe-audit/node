@@ -176,9 +176,9 @@ export enum Isolation {
 }
 
 export enum Bouclage {
-  reseau_non_boucle = 'reseau_non_boucle',
-  reseau_boucle = 'reseau_boucle',
-  reseau_trace = 'reseau_trace'
+  non_boucle = 'non_boucle',
+  boucle = 'boucle',
+  trace = 'trace'
 }
 
 export const typeGenerateurToString = (value: TypeGenerateur): string => {
@@ -259,11 +259,11 @@ export const isolationToString = (value: Isolation): string => {
 
 export const bouclageToString = (value: Bouclage): string => {
   switch (value) {
-    case Bouclage.reseau_non_boucle:
+    case Bouclage.non_boucle:
       return 'Réseau non bouclé'
-    case Bouclage.reseau_boucle:
+    case Bouclage.boucle:
       return 'Réseau bouclé'
-    case Bouclage.reseau_trace:
+    case Bouclage.trace:
       return 'Réseau trace'
   }
 }
