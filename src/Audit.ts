@@ -1,10 +1,10 @@
-import type { Chauffage } from './chauffage'
+import type { IChauffage } from './chauffage'
 import type { Consommation } from './common'
-import type { Eclairage } from './eclairage'
-import type { Ecs } from './ecs'
-import type { Enveloppe } from './enveloppe'
-import type { Refroidissment } from './refroidissement'
-import type { Ventilation } from './ventilation'
+import type { IEclairage } from './eclairage'
+import type { IEcs } from './ecs'
+import type { IEnveloppe } from './enveloppe'
+import type { IRefroidissment } from './refroidissement'
+import type { IVentilation } from './ventilation'
 import type { NotFound, Unprocessable, BadRequest } from './errors'
 import { send } from './request'
 
@@ -80,12 +80,12 @@ export type SearchAuditQuery = {
 export interface Audit {
   batiment: Batiment
   adresse: Adresse
-  enveloppe: Enveloppe
-  chauffage: Chauffage
-  ecs: Ecs
-  eclairage: Eclairage
-  refroidissement: Refroidissment
-  ventilation: Ventilation
+  enveloppe: IEnveloppe
+  chauffage: IChauffage
+  ecs: IEcs
+  eclairage: IEclairage
+  refroidissement: IRefroidissment
+  ventilation: IVentilation
   data?: Partial<AuditData>
 }
 

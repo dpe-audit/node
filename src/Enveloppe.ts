@@ -3,20 +3,20 @@ import { send } from './request'
 
 export const retrieveEnveloppe = async (
   id: string
-): Promise<Enveloppe | NotFound> => {
-  return send<Enveloppe | NotFound>({
+): Promise<IEnveloppe | NotFound> => {
+  return send<IEnveloppe | NotFound>({
     method: 'GET',
     path: `/audit/${id}/enveloppe`
   })
 }
 
-export interface Enveloppe {
-  murs: Mur[]
-  planchers_hauts: PlancherHaut[]
-  planchers_bas: PlancherBas[]
-  baies: Baie[]
-  portes: Porte[]
-  ponts_thermiques: PontThermique[]
+export interface IEnveloppe {
+  murs: IMur[]
+  planchers_hauts: IPlancherHaut[]
+  planchers_bas: IPlancherBas[]
+  baies: IBaie[]
+  portes: IPorte[]
+  ponts_thermiques: IPontThermique[]
   data?: Partial<EnveloppeData>
 }
 
@@ -33,7 +33,7 @@ export type EnveloppeData = {
   deperditions: Deperdition[]
 }
 
-export interface Mur {
+export interface IMur {
   id: string
   description: string
   type_structure: Mur.TypeStructure | null
@@ -61,7 +61,7 @@ export type MurData = {
   performance: Performance
 }
 
-export interface PlancherBas {
+export interface IPlancherBas {
   id: string
   description: string
   type_structure: PlancherBas.TypeStructure | null
@@ -85,7 +85,7 @@ export type PlancherBasData = {
   performance: Performance
 }
 
-export interface PlancherHaut {
+export interface IPlancherHaut {
   id: string
   description: string
   type_structure: PlancherHaut.TypeStructure | null
@@ -109,7 +109,7 @@ export type PlancherHautData = {
   performance: Performance
 }
 
-export interface Baie {
+export interface IBaie {
   id: string
   description: string
   type_baie: Baie.TypeBaie
@@ -138,7 +138,7 @@ export type BaieData = {
   performance: Performance
 }
 
-export interface Porte {
+export interface IPorte {
   id: string
   description: string
   type_pose: TypePose
@@ -162,7 +162,7 @@ export type PorteData = {
   performance: Performance
 }
 
-export interface PontThermique {
+export interface IPontThermique {
   id: string
   description: string
   longueur: number
@@ -261,6 +261,64 @@ export type Isolation = {
   type_isolation: TypeIsolation | null
   epaisseur_isolation: number | null
   resistance_thermique_isolation: number | null
+}
+
+export const performanceToString = (value: Performance): string => {
+  switch (value) {
+    case Performance.tres_bonne:
+      return 'Très bonne'
+    case Performance.bonne:
+      return 'Bonne'
+    case Performance.moyenne:
+      return 'Moyenne'
+    case Performance.insuffisante:
+      return 'Insuffisante'
+  }
+}
+
+export const confortEteToString = (value: ConfortEte): string => {
+  switch (value) {
+    case ConfortEte.bon:
+      return 'Bon'
+    case ConfortEte.moyen:
+      return 'Moyen'
+    case ConfortEte.insuffisant:
+      return 'Insuffisant'
+  }
+}
+
+export const typeIsolationToString = (value: TypeIsolation): string => {
+  switch (value) {
+    case TypeIsolation.iti:
+      return "Isolation par l'intérieur"
+    case TypeIsolation.ite:
+      return "Isolation par l'extérieur"
+    case TypeIsolation.itr:
+      return 'Isolation répartie'
+    case TypeIsolation.iti_ite:
+      return "Isolation par l'intérieur et par l'extérieur"
+    case TypeIsolation.itr_iti:
+      return "Isolation répartie et par l'intérieur"
+    case TypeIsolation.itr_ite:
+      return "Isolation répartie et par l'extérieur"
+    case TypeIsolation.itr_iti_ite:
+      return "Isolation répartie, par l'intérieur et par l'extérieur"
+  }
+}
+
+export const isolationToString = (value: Isolation): string => {
+  if (null === value.etat_isolation || null === value.type_isolation) {
+    return 'Isolation inconnue'
+  }
+  if (value.etat_isolation === EtatIsolation.non_isole) {
+    return 'Sans isolation'
+  }
+  let text: string = typeIsolationToString(value.type_isolation)
+
+  if (value.epaisseur_isolation) {
+    text += ` - ${value.epaisseur_isolation} mm`
+  }
+  return text
 }
 
 export namespace Mur {
@@ -816,62 +874,4 @@ export namespace PontThermique {
         return 'Menuiserie - Mur'
     }
   }
-}
-
-export const performanceToString = (value: Performance): string => {
-  switch (value) {
-    case Performance.tres_bonne:
-      return 'Très bonne'
-    case Performance.bonne:
-      return 'Bonne'
-    case Performance.moyenne:
-      return 'Moyenne'
-    case Performance.insuffisante:
-      return 'Insuffisante'
-  }
-}
-
-export const confortEteToString = (value: ConfortEte): string => {
-  switch (value) {
-    case ConfortEte.bon:
-      return 'Bon'
-    case ConfortEte.moyen:
-      return 'Moyen'
-    case ConfortEte.insuffisant:
-      return 'Insuffisant'
-  }
-}
-
-export const typeIsolationToString = (value: TypeIsolation): string => {
-  switch (value) {
-    case TypeIsolation.iti:
-      return "Isolation par l'intérieur"
-    case TypeIsolation.ite:
-      return "Isolation par l'extérieur"
-    case TypeIsolation.itr:
-      return 'Isolation répartie'
-    case TypeIsolation.iti_ite:
-      return "Isolation par l'intérieur et par l'extérieur"
-    case TypeIsolation.itr_iti:
-      return "Isolation répartie et par l'intérieur"
-    case TypeIsolation.itr_ite:
-      return "Isolation répartie et par l'extérieur"
-    case TypeIsolation.itr_iti_ite:
-      return "Isolation répartie, par l'intérieur et par l'extérieur"
-  }
-}
-
-export const isolationToString = (value: Isolation): string => {
-  if (null === value.etat_isolation || null === value.type_isolation) {
-    return 'Isolation inconnue'
-  }
-  if (value.etat_isolation === EtatIsolation.non_isole) {
-    return 'Sans isolation'
-  }
-  let text: string = typeIsolationToString(value.type_isolation)
-
-  if (value.epaisseur_isolation) {
-    text += ` - ${value.epaisseur_isolation} mm`
-  }
-  return text
 }

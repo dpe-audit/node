@@ -11,18 +11,18 @@ import { send } from './request'
 
 export const retrieveChauffage = async (
   id: string
-): Promise<Chauffage | NotFound> => {
-  return send<Chauffage | NotFound>({
+): Promise<IChauffage | NotFound> => {
+  return send<IChauffage | NotFound>({
     method: 'GET',
     path: `/audit/${id}/chauffage`
   })
 }
 
-export interface Chauffage {
-  generateurs: Generateur[]
-  emetteurs: Emetteur[]
-  installations: Installation[]
-  systemes: Systeme[]
+export interface IChauffage {
+  generateurs: IGenerateur[]
+  emetteurs: IEmetteur[]
+  installations: IInstallation[]
+  systemes: ISysteme[]
   data?: Partial<ChauffageData>
 }
 
@@ -34,7 +34,7 @@ export type ChauffageData = {
   emissions: Emission[]
 }
 
-export interface Generateur {
+export interface IGenerateur {
   id: string
   description: string
   type: TypeGenerateur
@@ -126,7 +126,7 @@ export enum ModeCombustion {
   condensation = 'condensation'
 }
 
-export interface Emetteur {
+export interface IEmetteur {
   id: string
   description: string
   type: TypeEmetteur
@@ -149,7 +149,7 @@ export enum TemperatureDistribution {
   haute = 'haute'
 }
 
-export interface Installation {
+export interface IInstallation {
   id: string
   description: string
   surface: number
@@ -184,7 +184,7 @@ export enum Usage {
   chauffage_ecs = 'chauffage_ecs'
 }
 
-export interface Systeme {
+export interface ISysteme {
   id: string
   installation_id: string
   generateur_id: string

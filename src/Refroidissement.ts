@@ -4,17 +4,17 @@ import { send } from './request'
 
 export const retrieveRefroidissement = async (
   id: string
-): Promise<Refroidissment | NotFound> => {
-  return send<Refroidissment | NotFound>({
+): Promise<IRefroidissment | NotFound> => {
+  return send<IRefroidissment | NotFound>({
     method: 'GET',
     path: `/audit/${id}/refroidissement`
   })
 }
 
-export interface Refroidissment {
-  generateurs: Generateur[]
-  installations: Installation[]
-  systemes: Systeme[]
+export interface IRefroidissment {
+  generateurs: IGenerateur[]
+  installations: IInstallation[]
+  systemes: ISysteme[]
   data?: Partial<RefroidissmentData>
 }
 
@@ -24,7 +24,7 @@ export type RefroidissmentData = {
   emissions: Emission[]
 }
 
-export interface Generateur {
+export interface IGenerateur {
   id: string
   description: string
   type: TypeGenerateur
@@ -41,7 +41,7 @@ export type GenerateurData = {
   emissions: Emission[]
 }
 
-export interface Installation {
+export interface IInstallation {
   id: string
   description: string
   surface: number
@@ -54,7 +54,7 @@ export type InstallationData = {
   emissions: Emission[]
 }
 
-export interface Systeme {
+export interface ISysteme {
   id: string
   installation_id: string
   generateur_id: string

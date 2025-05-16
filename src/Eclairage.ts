@@ -4,14 +4,14 @@ import { send } from './request'
 
 export const retrieveEclairage = async (
   id: string
-): Promise<Eclairage | NotFound> => {
-  return send<Eclairage | NotFound>({
+): Promise<IEclairage | NotFound> => {
+  return send<IEclairage | NotFound>({
     method: 'GET',
     path: `/audit/${id}/eclairage`
   })
 }
 
-export interface Eclairage {
+export interface IEclairage {
   data?: Partial<EclairageData>
 }
 
