@@ -263,6 +263,25 @@ export type Isolation = {
   resistance_thermique_isolation: number | null
 }
 
+export const typeDeperditionToString = (value: TypeDeperdition): string => {
+  switch (value) {
+    case TypeDeperdition.mur:
+      return 'Mur'
+    case TypeDeperdition.plancher_haut:
+      return 'Plancher haut'
+    case TypeDeperdition.plancher_bas:
+      return 'Plancher bas'
+    case TypeDeperdition.baie:
+      return 'Baie'
+    case TypeDeperdition.porte:
+      return 'Porte'
+    case TypeDeperdition.pont_thermique:
+      return 'Pont thermique'
+    case TypeDeperdition.renouvellement_air:
+      return "Renouvellement d'air"
+  }
+}
+
 export const performanceToString = (value: Performance): string => {
   switch (value) {
     case Performance.tres_bonne:
