@@ -64,16 +64,16 @@ export interface IGenerateur {
 }
 
 export type GenerateurData = {
-  pch: number
-  pn: number
-  paux: number
-  scop: number
-  rpn: number
-  rpint: number
-  qp0: number
-  pveilleuse: number
-  tfonc30: number
-  tfonc100: number
+  pch: number | null
+  pn: number | null
+  paux: number | null
+  scop: number | null
+  rpn: number | null
+  rpint: number | null
+  qp0: number | null
+  pveilleuse: number | null
+  tfonc30: number | null
+  tfonc100: number | null
   pertes: Perte[]
   pertes_recuperables: Perte[]
   consommations: Consommation[]

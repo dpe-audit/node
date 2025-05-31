@@ -57,13 +57,13 @@ export interface IGenerateur {
 }
 
 export type GenerateurData = {
-  pecs: number
-  paux: number
-  pn: number
-  cop: number
-  rpn: number
-  qp0: number
-  pveilleuse: number
+  pecs: number | null
+  paux: number | null
+  pn: number | null
+  cop: number | null
+  rpn: number | null
+  qp0: number | null
+  pveilleuse: number | null
   pertes: Perte[]
   pertes_recuperables: Perte[]
   consommations: Consommation[]
