@@ -50,7 +50,7 @@ export const updateAudit = async (
 export const searchAudits = async (
   query: Partial<SearchAuditQuery>
 ): Promise<Partial<Audit>[]> => {
-  return send<Partial<Audit>[]>({
+  return send<AuditCollectionItem[]>({
     method: 'GET',
     path: `/audits`,
     params: query
@@ -78,6 +78,8 @@ export type SearchAuditQuery = {
 }
 
 export interface Audit {
+  id: string
+  date_etablissement: Date
   batiment: Batiment
   adresse: Adresse
   enveloppe: IEnveloppe
@@ -103,6 +105,14 @@ export type AuditData = {
   eges: number
   etiquette_energie: EtiquetteEnergie
   etiquette_climat: EtiquetteClimat
+}
+
+export interface AuditCollectionItem {
+  id: string
+  date_etablissement: Date
+  batiment: Batiment
+  adresse: Adresse
+  data?: Partial<AuditData>
 }
 
 export type Batiment = {
