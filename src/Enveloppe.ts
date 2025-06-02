@@ -197,7 +197,7 @@ export enum ConfortEte {
 }
 
 export enum Performance {
-  tres_bonne = 'très_bonne',
+  tres_bonne = 'tres_bonne',
   bonne = 'bonne',
   moyenne = 'moyenne',
   insuffisante = 'insuffisante'
