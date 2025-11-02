@@ -1,29 +1,13 @@
-import type { Consommation, Emission } from './common'
-import type { NotFound } from './errors'
-import { send } from './request'
-
-export const retrieveVentilation = async (
-  id: string
-): Promise<IVentilation | NotFound> => {
-  return send<IVentilation | NotFound>({
-    method: 'GET',
-    path: `/audit/${id}/ventilation`
-  })
-}
+import type { Consommations } from '../common'
 
 export interface IVentilation {
   generateurs: IGenerateur[]
   installations: IInstallation[]
-  systemes: ISysteme[]
   data?: Partial<VentilationData>
 }
 
 export type VentilationData = {
-  qvarep_conv: number
-  qvasouf_conv: number
-  smea_conv: number
-  consommations: Consommation[]
-  emissions: Emission[]
+  consommations: Consommations
 }
 
 export interface IGenerateur {
@@ -38,14 +22,20 @@ export interface IGenerateur {
 }
 
 export type GenerateurData = {
-  consommations: Consommation[]
-  emissions: Emission[]
+  rdim: number
+  ratio_utilisation: number
+  pvent_moy: number
+  cef_aux: number
+  cep_aux: number
+  eges_aux: number
 }
 
 export interface IInstallation {
   id: string
+  generateur_id: string | null
   description: string
   surface: number
+  type: TypeVentilation
   data?: Partial<InstallationData>
 }
 
@@ -54,28 +44,7 @@ export type InstallationData = {
   qvarep_conv: number
   qvasouf_conv: number
   smea_conv: number
-  consommations: Consommation[]
-  emissions: Emission[]
-}
-
-export interface ISysteme {
-  id: string
-  installation_id: string
-  generateur_id: string | null
-  type: TypeVentilation
-  data?: Partial<SystemeData>
-}
-
-export type SystemeData = {
-  rdim: number
-  qvarep_conv: number
-  qvasouf_conv: number
-  smea_conv: number
-  ratio_utilisation: number
-  pvent_moy: number
-  pvent: number
-  consommations: Consommation[]
-  emissions: Emission[]
+  consommations: Consommations
 }
 
 export enum TypeGenerateur {

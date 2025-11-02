@@ -33,11 +33,3 @@ Wrapper de l'API DPE-Audit pour Node.js.
 ```
 npm i dpe-audit
 ```
-
-## Usage
-
-```
-import DPEAudit from 'dpe-audit'
-
-const audits = await DPEAudit.audit.searchAudits({ page: 1}) // [{...}]
-```

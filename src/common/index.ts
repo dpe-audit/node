@@ -1,29 +1,28 @@
-export type Besoin = {
-  scenario: Scenario
-  usage: Usage
-  besoin: number
+export type Bilan = {
+  cef: number
+  cep: number
+  eges: number
+  etiquette_energie: EtiquetteEnergie
+  etiquette_climat: EtiquetteClimat
 }
 
 export type Consommation = {
-  scenario: Scenario
   usage: Usage
   energie: Energie
   cef: number
   cep: number
-}
-
-export type Emission = {
-  scenario: Scenario
-  usage: Usage
   eges: number
 }
 
+export type Consommations = Consommation[]
+
 export type Perte = {
-  usage: Usage
-  scenario: Scenario
   type: TypePerte
-  perte: number
+  pertes: number
+  pertes_recuperables: number
 }
+
+export type Pertes = Perte[]
 
 export enum Scenario {
   conventionnel = 'conventionnel',
@@ -40,21 +39,39 @@ export enum Usage {
 
 export enum Energie {
   electricite = 'electricite',
+  electricite_renouvelable = 'electricite_renouvelable',
   gaz_naturel = 'gaz_naturel',
   gpl = 'gpl',
   fioul = 'fioul',
+  bois = 'bois',
   charbon = 'charbon',
-  bois_buche = 'bois_buche',
-  bois_plaquette = 'bois_plaquette',
-  bois_granule = 'bois_granule',
-  reseau_chaleur = 'reseau_chaleur',
-  reseau_froid = 'reseau_froid'
+  reseau_urbain = 'reseau_urbain'
 }
 
 export enum TypePerte {
   generation = 'generation',
   stockage = 'stockage',
   distribution = 'distribution'
+}
+
+export enum EtiquetteEnergie {
+  A = 'A',
+  B = 'B',
+  C = 'C',
+  D = 'D',
+  E = 'E',
+  F = 'F',
+  G = 'G'
+}
+
+export enum EtiquetteClimat {
+  A = 'A',
+  B = 'B',
+  C = 'C',
+  D = 'D',
+  E = 'E',
+  F = 'F',
+  G = 'G'
 }
 
 export enum Mois {
@@ -70,6 +87,17 @@ export enum Mois {
   octobre = '10',
   novembre = '11',
   decembre = '12'
+}
+
+export enum ZoneClimatique {
+  H1a = 'H1a',
+  H1b = 'H1b',
+  H1c = 'H1c',
+  H2a = 'H2a',
+  H2b = 'H2b',
+  H2c = 'H2c',
+  H2d = 'H2d',
+  H3 = 'H3'
 }
 
 export const scenarioToString = (value: Scenario): string => {
@@ -100,6 +128,8 @@ export const energieToString = (value: Energie): string => {
   switch (value) {
     case Energie.electricite:
       return 'Electricité'
+    case Energie.electricite_renouvelable:
+      return 'Electricité renouvelable'
     case Energie.gaz_naturel:
       return 'Gaz naturel'
     case Energie.gpl:
@@ -108,16 +138,10 @@ export const energieToString = (value: Energie): string => {
       return 'Fioul'
     case Energie.charbon:
       return 'Charbon'
-    case Energie.bois_buche:
-      return 'Bois bûche'
-    case Energie.bois_plaquette:
-      return 'Bois plaquette'
-    case Energie.bois_granule:
-      return 'Bois granulé'
-    case Energie.reseau_chaleur:
-      return 'Réseau de chaleur'
-    case Energie.reseau_froid:
-      return 'Réseau de froid'
+    case Energie.bois:
+      return 'Bois'
+    case Energie.reseau_urbain:
+      return 'Réseau urbain'
   }
 }
 

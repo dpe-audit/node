@@ -1,15 +1,4 @@
-import type { Besoin, Consommation, Emission, Energie } from './common'
-import type { NotFound } from './errors'
-import { send } from './request'
-
-export const retrieveRefroidissement = async (
-  id: string
-): Promise<IRefroidissment | NotFound> => {
-  return send<IRefroidissment | NotFound>({
-    method: 'GET',
-    path: `/audit/${id}/refroidissement`
-  })
-}
+import type { Consommations } from '../common'
 
 export interface IRefroidissment {
   generateurs: IGenerateur[]
@@ -19,9 +8,8 @@ export interface IRefroidissment {
 }
 
 export type RefroidissmentData = {
-  besoins: Besoin[]
-  consommations: Consommation[]
-  emissions: Emission[]
+  bfr: number
+  consommations: Consommations
 }
 
 export interface IGenerateur {
@@ -36,9 +24,11 @@ export interface IGenerateur {
 }
 
 export type GenerateurData = {
-  eer: number | null
-  consommations: Consommation[]
-  emissions: Emission[]
+  rdim: number
+  eer: number
+  cef_fr: number
+  cep_fr: number
+  eges_fr: number
 }
 
 export interface IInstallation {
@@ -50,12 +40,12 @@ export interface IInstallation {
 
 export type InstallationData = {
   rdim: number
-  consommations: Consommation[]
-  emissions: Emission[]
+  consommations: Consommations
 }
 
 export interface ISysteme {
   id: string
+  description: string
   installation_id: string
   generateur_id: string
   data?: Partial<SystemeData>
@@ -63,8 +53,12 @@ export interface ISysteme {
 
 export type SystemeData = {
   rdim: number
-  consommations: Consommation[]
-  emissions: Emission[]
+  cef_fr: number
+  cep_fr: number
+  eges_fr: number
+  cef_aux: number
+  cep_aux: number
+  eges_aux: number
 }
 
 export enum TypeGenerateur {
@@ -78,10 +72,12 @@ export enum TypeGenerateur {
   autre = 'autre'
 }
 
-export type EnergieGenerateur = Extract<
-  Energie,
-  Energie.electricite | Energie.gaz_naturel | Energie.gpl | Energie.reseau_froid
->
+export enum EnergieGenerateur {
+  electricite = 'electricite',
+  gaz_naturel = 'gaz_naturel',
+  gpl = 'gpl',
+  reseau_froid = 'reseau_froid'
+}
 
 export const typeGenerateurToString = (value: TypeGenerateur): string => {
   switch (value) {
@@ -101,5 +97,18 @@ export const typeGenerateurToString = (value: TypeGenerateur): string => {
       return 'Autre système thermodynamique'
     case TypeGenerateur.autre:
       return 'Autre'
+  }
+}
+
+export const energieGenerateurToString = (value: EnergieGenerateur): string => {
+  switch (value) {
+    case EnergieGenerateur.electricite:
+      return 'Electricité'
+    case EnergieGenerateur.gaz_naturel:
+      return 'Gaz naturel'
+    case EnergieGenerateur.gpl:
+      return 'GPL'
+    case EnergieGenerateur.reseau_froid:
+      return 'Réseau froid'
   }
 }
