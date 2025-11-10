@@ -4,7 +4,7 @@ export interface IPontThermique {
   longueur: number
   kpt: number | null
   liaison: Liaison
-  data?: Partial<PontThermiqueData>
+  data?: PontThermiqueData
 }
 
 export type PontThermiqueData = {

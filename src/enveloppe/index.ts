@@ -34,7 +34,7 @@ export interface IEnveloppe {
   ponts_thermiques: IPontThermique[]
   doubles_fenetres: IDoubleFenetre[]
   masques: IMasque[]
-  data?: Partial<EnveloppeData>
+  data?: EnveloppeData
 }
 
 export type EnveloppeData = {

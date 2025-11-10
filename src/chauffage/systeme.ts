@@ -1,12 +1,15 @@
+import type { Consommations } from "../common"
+
 export interface ISysteme {
   id: string
   description: string
   installation_id: string
   generateur_id: string
   type: TypeChauffage
+  cascade: number | null
   reseau: Reseau | null
   emetteurs: string[]
-  data?: Partial<SystemeData>
+  data?: SystemeData
 }
 
 export type SystemeData = {
@@ -18,18 +21,7 @@ export type SystemeData = {
   re: number
   rg: number
   rr: number
-  cef_ch: number
-  cep_ch: number
-  eges_ch: number
-  cef_aux: number
-  cep_aux: number
-  eges_aux: number
-  pertes: Pertes
-}
-
-export type Pertes = {
-  pertes_generation: number
-  pertes_generation_recuperables: number
+  consommations: Consommations
 }
 
 export type Reseau = {

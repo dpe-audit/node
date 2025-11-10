@@ -1,3 +1,5 @@
+import type { Consommations } from "../common"
+
 export interface IGenerateur {
   id: string
   description: string
@@ -7,14 +9,11 @@ export interface IGenerateur {
   annee_installation: number | null
   position: Position
   signaletique: Signaletique
-  data?: Partial<GenerateurData>
+  data?: GenerateurData
 }
 
 export type GenerateurData = {
   rdim: number
-  cef_ch: number
-  cep_ch: number
-  eges_ch: number
   pn: number
   pdim: number
   pch: number
@@ -25,12 +24,9 @@ export type GenerateurData = {
   pveilleuse: number | null
   tfonc30: number | null
   tfonc100: number | null
-  pertes: Pertes
-}
-
-export type Pertes = {
   pertes_generation: number
   pertes_generation_recuperables: number
+  consommations: Consommations
 }
 
 export type Position = {
@@ -38,8 +34,6 @@ export type Position = {
   generateur_collectif: boolean
   generateur_multi_batiment: boolean
   position_volume_chauffe: boolean
-  cascade: number | null
-  priorite_cascade: number | null
   generateur_mixte_id: string | null
   reseau_chaleur_id: string | null
 }
@@ -72,10 +66,6 @@ export enum TypeGenerateur {
   pac_eau_eau = 'pac_eau_eau',
   pac_eau_glycolee_eau = 'pac_eau_glycolee_eau',
   pac_geothermique = 'pac_geothermique',
-  pac_hybride_air_eau = 'pac_hybride_air_eau',
-  pac_hybride_eau_eau = 'pac_hybride_eau_eau',
-  pac_hybride_eau_glycolee_eau = 'pac_hybride_eau_glycolee_eau',
-  pac_hybride_geothermique = 'pac_hybride_geothermique',
   panneau_rayonnant_electrique = 'panneau_rayonnant_electrique',
   plafond_rayonnant_electrique = 'plafond_rayonnant_electrique',
   plancher_rayonnant_electrique = 'plancher_rayonnant_electrique',
@@ -146,14 +136,6 @@ export const typeGenerateurToString = (value: TypeGenerateur): string => {
       return 'PAC eau glycolée-eau'
     case TypeGenerateur.pac_geothermique:
       return 'PAC géothermique'
-    case TypeGenerateur.pac_hybride_air_eau:
-      return 'PAC hybride air-eau'
-    case TypeGenerateur.pac_hybride_eau_eau:
-      return 'PAC hybride eau-eau'
-    case TypeGenerateur.pac_hybride_eau_glycolee_eau:
-      return 'PAC hybride eau glycolée-eau'
-    case TypeGenerateur.pac_hybride_geothermique:
-      return 'PAC hybride géothermique'
     case TypeGenerateur.panneau_rayonnant_electrique:
       return 'Panneau rayonnant électrique'
     case TypeGenerateur.plafond_rayonnant_electrique:

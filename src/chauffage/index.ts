@@ -1,4 +1,4 @@
-import type { Consommations, Pertes } from '../common'
+import type { Consommations } from '../common'
 import type { IEmetteur } from './emetteur'
 import type { IGenerateur } from './generateur'
 import type { IInstallation } from './installation'
@@ -14,11 +14,12 @@ export interface IChauffage {
   generateurs: IGenerateur[]
   installations: IInstallation[]
   systemes: ISysteme[]
-  data?: Partial<ChauffageData>
+  data?: ChauffageData
 }
 
 export type ChauffageData = {
   bch: number
+  pertes_generation: number
+  pertes_generation_recuperable: number
   consommations: Consommations
-  pertes: Pertes
 }

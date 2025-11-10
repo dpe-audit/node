@@ -7,6 +7,7 @@ export type Bilan = {
 }
 
 export type Consommation = {
+  scenario: Scenario
   usage: Usage
   energie: Energie
   cef: number
@@ -15,14 +16,6 @@ export type Consommation = {
 }
 
 export type Consommations = Consommation[]
-
-export type Perte = {
-  type: TypePerte
-  pertes: number
-  pertes_recuperables: number
-}
-
-export type Pertes = Perte[]
 
 export enum Scenario {
   conventionnel = 'conventionnel',
@@ -72,21 +65,6 @@ export enum EtiquetteClimat {
   E = 'E',
   F = 'F',
   G = 'G'
-}
-
-export enum Mois {
-  janvier = '01',
-  fevrier = '02',
-  mars = '03',
-  avril = '04',
-  mai = '05',
-  juin = '06',
-  juillet = '07',
-  aout = '08',
-  septembre = '09',
-  octobre = '10',
-  novembre = '11',
-  decembre = '12'
 }
 
 export enum ZoneClimatique {
@@ -153,34 +131,5 @@ export const typePerteToString = (value: TypePerte): string => {
       return 'Stockage'
     case TypePerte.distribution:
       return 'Distribution'
-  }
-}
-
-export const moisToString = (value: Mois): string => {
-  switch (value) {
-    case Mois.janvier:
-      return 'Janvier'
-    case Mois.fevrier:
-      return 'Février'
-    case Mois.mars:
-      return 'Mars'
-    case Mois.avril:
-      return 'Avril'
-    case Mois.mai:
-      return 'Mai'
-    case Mois.juin:
-      return 'Juin'
-    case Mois.juillet:
-      return 'Juillet'
-    case Mois.aout:
-      return 'Août'
-    case Mois.septembre:
-      return 'Septembre'
-    case Mois.octobre:
-      return 'Octobre'
-    case Mois.novembre:
-      return 'Novembre'
-    case Mois.decembre:
-      return 'Décembre'
   }
 }

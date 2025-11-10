@@ -1,4 +1,4 @@
-import type { Consommations, Pertes } from '../common'
+import type { Consommations } from "../common"
 
 export interface IInstallation {
   id: string
@@ -8,7 +8,7 @@ export interface IInstallation {
   solaire_thermique: SolaireThermique | null
   regulation_centrale: Regulation
   regulation_terminale: Regulation
-  data?: Partial<InstallationData>
+  data?: InstallationData
 }
 
 export type InstallationData = {
@@ -21,7 +21,6 @@ export type InstallationData = {
   re: number
   rg: number
   rr: number
-  pertes: Pertes
   consommations: Consommations
 }
 

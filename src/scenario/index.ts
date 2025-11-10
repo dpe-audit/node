@@ -1,5 +1,5 @@
 import type { IChauffage } from '../chauffage'
-import type { Bilan, Consommations, Pertes, ZoneClimatique } from '../common'
+import type { Bilan, Consommations, ZoneClimatique } from '../common'
 import type { IEcs } from '../ecs'
 import type { IEnveloppe } from '../enveloppe'
 import type { IProduction } from '../production'
@@ -24,7 +24,7 @@ export interface IEtape {
   ventilation: IVentilation
   refroidissement: IRefroidissment
   production: IProduction
-  data?: Partial<EtapeData>
+  data?: EtapeData
 }
 
 export type EtapeData = {
@@ -35,7 +35,6 @@ export type EtapeData = {
   volume_reference: number
   bilan: Bilan
   consommations: Consommations
-  pertes: Pertes
 }
 
 export enum TypeScenario {

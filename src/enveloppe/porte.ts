@@ -10,7 +10,7 @@ export interface IPorte {
   position: Position
   vitrage: Vitrage
   menuiserie: Menuiserie
-  data?: Partial<PorteData>
+  data?: PorteData
 }
 
 export type PorteData = {

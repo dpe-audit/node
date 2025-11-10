@@ -1,4 +1,4 @@
-import type { Consommations, Pertes } from '../common'
+import type { Consommations } from '../common'
 import type { IGenerateur } from './generateur'
 import type { IInstallation } from './installation'
 import type { ISysteme } from './systeme'
@@ -11,13 +11,18 @@ export interface IEcs {
   generateurs: IGenerateur[]
   installations: IInstallation[]
   systemes: ISysteme[]
-  data?: Partial<EcsData>
+  data?: EcsData
 }
 
 export type EcsData = {
   nmax: number
   nadeq: number
   becs: number
-  pertes: Pertes
+  pertes_generation: number
+  pertes_generation_recuperables: number
+  pertes_distributions: number
+  pertes_distributions_recuperables: number
+  pertes_stockage: number
+  pertes_stockage_recuperables: number
   consommations: Consommations
 }

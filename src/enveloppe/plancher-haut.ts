@@ -11,7 +11,7 @@ export interface IPlancherHaut {
   u: number | null
   position: Position
   isolation: Isolation
-  data?: Partial<PlancherHautData>
+  data?: PlancherHautData
 }
 
 export type PlancherHautData = {

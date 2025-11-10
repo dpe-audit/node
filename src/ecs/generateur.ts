@@ -1,3 +1,5 @@
+import { Energie, type Consommations } from "../common"
+
 export interface IGenerateur {
   id: string
   description: string
@@ -6,30 +8,23 @@ export interface IGenerateur {
   annee_installation: number | null
   position: Position
   signaletique: Signaletique
-  data?: Partial<GenerateurData>
+  data?: GenerateurData
 }
 
 export type GenerateurData = {
   rdim: number
-  cef_ecs: number
-  cep_ecs: number
-  eges_ecs: number
   pn: number
   pdim: number
-  paux: number | null
   pecs: number
   cop: number | null
   rpn: number | null
   qp0: number | null
   pveilleuse: number | null
-  pertes: Pertes
-}
-
-export type Pertes = {
   pertes_generation: number
   pertes_generation_recuperables: number
-  pertes_stockage_integre: number
-  pertes_stockage_integre_recuperables: number
+  pertes_stockage: number
+  pertes_stockage_recuperables: number
+  consommations: Consommations
 }
 
 export type Position = {
@@ -87,15 +82,33 @@ export enum LabelGenerateur {
   ne_performance_c = 'ne_performance_c'
 }
 
-export enum TypeChaudiere {
-  chaudiere_murale = 'chaudiere_murale',
-  chaudiere_sol = 'chaudiere_sol'
-}
-
 export enum ModeCombustion {
   standard = 'standard',
   basse_temperature = 'basse_temperature',
   condensation = 'condensation'
+}
+
+export const energieGenerateurToEnum = (value: EnergieGenerateur): Energie => {
+  switch (value) {
+    case EnergieGenerateur.electricite:
+      return Energie.electricite
+    case EnergieGenerateur.gaz_naturel:
+      return Energie.gaz_naturel
+    case EnergieGenerateur.gpl:
+      return Energie.gpl
+    case EnergieGenerateur.fioul:
+      return Energie.fioul
+    case EnergieGenerateur.charbon:
+      return Energie.charbon
+    case EnergieGenerateur.bois_buche:
+      return Energie.bois
+    case EnergieGenerateur.bois_plaquette:
+      return Energie.bois
+    case EnergieGenerateur.bois_granule:
+      return Energie.bois
+    case EnergieGenerateur.reseau_chaleur:
+      return Energie.reseau_urbain
+  }
 }
 
 export const typeGenerateurToString = (value: TypeGenerateur): string => {
@@ -150,15 +163,6 @@ export const labelGenerateurToString = (value: LabelGenerateur): string => {
       return 'NE - Performance B'
     case LabelGenerateur.ne_performance_c:
       return 'NE - Performance C'
-  }
-}
-
-export const typeChaudiereToString = (value: TypeChaudiere): string => {
-  switch (value) {
-    case TypeChaudiere.chaudiere_murale:
-      return 'Chaudière murale'
-    case TypeChaudiere.chaudiere_sol:
-      return 'Chaudière sol'
   }
 }
 

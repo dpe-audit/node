@@ -1,4 +1,4 @@
-import type { Pertes } from '../common'
+import type { Consommations } from '../common'
 
 export interface ISysteme {
   id: string
@@ -6,23 +6,22 @@ export interface ISysteme {
   generateur_id: string
   reseau: Reseau
   stockage: Stockage | null
-  data?: Partial<SystemeData>
+  data?: SystemeData
 }
 
 export type SystemeData = {
   rdim: number
+  paux: number
   iecs: number
   rd: number
   rs: number
   rg: number
   rgs: number
-  cef_ecs: number
-  cep_ecs: number
-  eges_ecs: number
-  cef_aux: number
-  cep_aux: number
-  eges_aux: number
-  pertes: Pertes
+  pertes_stockage: number
+  pertes_stockage_recuperables: number
+  pertes_distribution: number
+  pertes_distribution_recuperables: number
+  consommations: Consommations
 }
 
 export type Reseau = {

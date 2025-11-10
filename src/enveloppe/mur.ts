@@ -15,7 +15,7 @@ export interface IMur {
   u: number | null
   position: Position
   isolation: Isolation
-  data?: Partial<MurData>
+  data?: MurData
 }
 
 export type MurData = {

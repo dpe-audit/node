@@ -1,11 +1,11 @@
-import type { Consommations, Pertes } from '../common'
+import type { Consommations } from "../common"
 
 export interface IInstallation {
   id: string
   description: string
   surface: number
   solaire_thermique: SolaireThermique | null
-  data?: Partial<InstallationData>
+  data?: InstallationData
 }
 
 export type InstallationData = {
@@ -16,7 +16,6 @@ export type InstallationData = {
   rs: number
   rg: number
   rgs: number
-  pertes: Pertes
   consommations: Consommations
 }
 

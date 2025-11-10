@@ -7,7 +7,7 @@ export interface INiveau {
   inertie_paroi_verticale: InertieParoi
   inertie_plancher_bas: InertieParoi
   inertie_plancher_haut: InertieParoi
-  data?: Partial<NiveauData>
+  data?: NiveauData
 }
 
 export type NiveauData = {

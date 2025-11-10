@@ -6,17 +6,17 @@ export interface IDoubleFenetre {
   uw: number | null
   sw: number | null
   position: Position
-  menuiserie: Menuiserie
+  menuiserie: Menuiserie | null
   vitrage: Vitrage
-  survitrage: Survitrage
+  survitrage: Survitrage | null
   masques: string[]
-  data?: Partial<DoubleFenetreData>
+  data?: DoubleFenetreData
 }
 
 export type DoubleFenetreData = {
-  ug: number | null
-  uw: number | null
-  sw: number | null
+  ug: number
+  uw: number
+  sw: number
 }
 
 export type Position = {

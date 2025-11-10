@@ -1,5 +1,5 @@
 import type { Batiment } from '../batiment'
-import type { Bilan, Consommations, Pertes, ZoneClimatique } from '../common'
+import type { Bilan, Consommations, ZoneClimatique } from '../common'
 import type { IChauffage } from '../chauffage'
 import type { IEcs } from '../ecs'
 import type { IEnveloppe } from '../enveloppe'
@@ -21,7 +21,7 @@ export interface IDiagnostic {
   ventilation: IVentilation
   refroidissement: IRefroidissment
   production: IProduction
-  data?: Partial<DiagnosticData>
+  data?: DiagnosticData
 }
 
 export type DiagnosticData = {
@@ -32,5 +32,4 @@ export type DiagnosticData = {
   volume_reference: number
   bilan: Bilan
   consommations: Consommations
-  pertes: Pertes
 }

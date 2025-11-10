@@ -12,22 +12,22 @@ export interface IBaie {
   ujn: number | null
   sw: number | null
   position: Position
-  menuiserie: Menuiserie
+  menuiserie: Menuiserie | null
   vitrage: Vitrage
-  survitrage: Survitrage
+  survitrage: Survitrage | null
   masques: string[]
-  data?: Partial<BaieData>
+  data?: BaieData
 }
 
 export type BaieData = {
   sdep: number
   u: number
-  ug: number | null
-  uw: number | null
-  deltar: number | null
-  fe: number | null
-  sw: number | null
-  sse: number | null
+  ug: number
+  uw: number
+  deltar: number
+  fe: number
+  sw: number
+  sse: number
   b: number
   dp: number
   performance: Performance

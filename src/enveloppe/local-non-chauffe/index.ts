@@ -10,7 +10,7 @@ export interface ILocalNonChauffe {
   type: TypeLnc
   parois: IParoi[]
   baies: IBaie[]
-  data?: Partial<LocalNonChauffeData>
+  data?: LocalNonChauffeData
 }
 
 export type LocalNonChauffeData = {

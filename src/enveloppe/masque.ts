@@ -7,7 +7,7 @@ export interface IMasque {
   hauteur: number | null
   profondeur: number | null
   secteur: SecteurOrientation | null
-  data?: Partial<MasqueData>
+  data?: MasqueData
 }
 
 export type MasqueData = {
