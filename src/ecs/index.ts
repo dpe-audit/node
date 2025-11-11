@@ -18,6 +18,11 @@ export type EcsData = {
   nmax: number
   nadeq: number
   becs: number
+  iecs: number
+  rd: number
+  rs: number
+  rg: number
+  rgs: number
   pertes_generation: number
   pertes_generation_recuperables: number
   pertes_distribution: number
