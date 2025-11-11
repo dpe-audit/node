@@ -11,8 +11,8 @@ import type { IVentilation } from '../ventilation'
 export interface IDiagnostic {
   id?: string
   date?: string
-  date_visite: Date
-  date_etablissement: Date
+  date_visite: string
+  date_etablissement: string
   batiment: Batiment
   logements: ILogement[]
   enveloppe: IEnveloppe

@@ -3,7 +3,7 @@ import type { Mitoyennete, Performance } from './paroi'
 export interface IBaie {
   id: string
   description: string
-  type_baie: TypeBaie
+  type: TypeBaie
   presence_protection_solaire: boolean
   type_fermeture: TypeFermeture
   annee_installation: number | null

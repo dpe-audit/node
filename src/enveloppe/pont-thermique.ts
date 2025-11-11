@@ -13,7 +13,7 @@ export type PontThermiqueData = {
 }
 
 export type Liaison = {
-  type_liaison: TypeLiaison
+  type: TypeLiaison
   mur_id: string
   plancher_id: string | null
   ouverture_id: string | null

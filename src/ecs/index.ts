@@ -20,8 +20,8 @@ export type EcsData = {
   becs: number
   pertes_generation: number
   pertes_generation_recuperables: number
-  pertes_distributions: number
-  pertes_distributions_recuperables: number
+  pertes_distribution: number
+  pertes_distribution_recuperables: number
   pertes_stockage: number
   pertes_stockage_recuperables: number
   consommations: Consommations

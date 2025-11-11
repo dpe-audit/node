@@ -1,7 +1,7 @@
 export type Isolation = {
   etat: EtatIsolation | null
   type: TypeIsolation | null
-  annee_installation: number
+  annee_installation: number | null
   epaisseur: number | null
   resistance_thermique: number | null
 }

@@ -77,9 +77,9 @@ export type Deperditions = {
 
 export type Apports = {
   f: number
-  apport_ch: number
-  apport_interne_ch: number
-  apport_solaire_ch: number
+  apport: number
+  apport_interne: number
+  apport_solaire: number
   apport_fr: number
   apport_interne_fr: number
   apport_solaire_fr: number

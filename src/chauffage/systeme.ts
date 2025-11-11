@@ -14,6 +14,7 @@ export interface ISysteme {
 
 export type SystemeData = {
   rdim: number
+  paux: number
   int: number
   i0: number
   ich: number

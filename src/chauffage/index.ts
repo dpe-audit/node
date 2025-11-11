@@ -20,6 +20,6 @@ export interface IChauffage {
 export type ChauffageData = {
   bch: number
   pertes_generation: number
-  pertes_generation_recuperable: number
+  pertes_generation_recuperables: number
   consommations: Consommations
 }
