@@ -19,6 +19,7 @@ export * as PlancherBas from './plancher-bas'
 export * as PlancherHaut from './plancher-haut'
 export * as PontThermique from './pont-thermique'
 export * as Porte from './porte'
+export * as Paroi from './paroi'
 
 export interface IEnveloppe {
   exposition: Exposition
