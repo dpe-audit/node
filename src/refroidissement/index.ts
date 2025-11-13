@@ -7,14 +7,14 @@ export * as Generateur from './generateur'
 export * as Installation from './installation'
 export * as Systeme from './systeme'
 
-export interface IRefroidissment {
+export interface IRefroidissement {
   generateurs: IGenerateur[]
   installations: IInstallation[]
   systemes: ISysteme[]
-  data?: RefroidissmentData
+  data?: RefroidissementData
 }
 
-export type RefroidissmentData = {
+export type RefroidissementData = {
   bfr: number
   consommations: Consommations
 }

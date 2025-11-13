@@ -20,7 +20,7 @@ export enum TypeBatiment {
 export const typeBatimentToString = (type: TypeBatiment): string => {
   switch (type) {
     case TypeBatiment.maison:
-      return 'Maison individuelle'
+      return 'Maison'
     case TypeBatiment.immeuble:
       return 'Immeuble'
   }

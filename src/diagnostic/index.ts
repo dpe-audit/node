@@ -5,7 +5,7 @@ import type { IEcs } from '../ecs'
 import type { IEnveloppe } from '../enveloppe'
 import type { ILogement } from '../logement'
 import type { IProduction } from '../production'
-import type { IRefroidissment } from '../refroidissement'
+import type { IRefroidissement } from '../refroidissement'
 import type { IVentilation } from '../ventilation'
 
 export interface IDiagnostic {
@@ -19,7 +19,7 @@ export interface IDiagnostic {
   chauffage: IChauffage
   ecs: IEcs
   ventilation: IVentilation
-  refroidissement: IRefroidissment
+  refroidissement: IRefroidissement
   production: IProduction
   data?: DiagnosticData
 }
