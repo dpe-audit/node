@@ -5,3 +5,7 @@ export type Adresse = {
   code_insee: string
   commune: string
 }
+
+export const adresseToString = (adresse: Adresse): string => {
+  return `${adresse.nom}, ${adresse.code_postal} ${adresse.commune}`
+}
