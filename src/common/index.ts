@@ -133,3 +133,7 @@ export const typePerteToString = (value: TypePerte): string => {
       return 'Distribution'
   }
 }
+
+export const booleanToString = (value: boolean): string => {
+  return value ? 'Oui' : 'Non'
+}
