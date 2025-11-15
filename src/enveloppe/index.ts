@@ -107,7 +107,7 @@ export enum Performance {
 
 export enum PerformanceConfortEte {
   bon = 'bon',
-  moyen = 'moyenn',
+  moyen = 'moyen',
   insuffisant = 'insuffisant'
 }
 
