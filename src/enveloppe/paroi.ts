@@ -66,10 +66,10 @@ export const typeIsolationToString = (value: TypeIsolation): string => {
 
 export const isolationToString = (value: Isolation): string => {
   if (null === value.etat || null === value.type) {
-    return 'Isolation inconnue'
+    return 'Inconnue'
   }
   if (value.etat === EtatIsolation.non_isole) {
-    return 'Sans isolation'
+    return 'Non'
   }
   let text: string = typeIsolationToString(value.type)
 

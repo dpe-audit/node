@@ -16,6 +16,8 @@ export type GenerateurData = {
   rdim: number
   pn: number
   pdim: number
+  pch: number
+  rg: number
   scop: number | null
   rpn: number | null
   rpint: number | null

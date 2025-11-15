@@ -16,6 +16,7 @@ export type GenerateurData = {
   pn: number
   pdim: number
   pecs: number
+  rg: number
   cop: number | null
   rpn: number | null
   qp0: number | null
