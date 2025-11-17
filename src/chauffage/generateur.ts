@@ -111,7 +111,7 @@ export enum ModeCombustion {
   condensation = 'condensation'
 }
 
-export const typeGenerateurToString = (value: TypeGenerateur): string => {
+export const typeGenerateurToString = (value: TypeGenerateur | null): string => {
   switch (value) {
     case TypeGenerateur.chaudiere:
       return 'Chaudière'
@@ -155,10 +155,12 @@ export const typeGenerateurToString = (value: TypeGenerateur): string => {
       return 'Radiateur gaz'
     case TypeGenerateur.reseau_chaleur:
       return 'Réseau de chaleur'
+    default:
+      return 'Générateur inconnu'
   }
 }
 
-export const energieGenerateurToString = (value: EnergieGenerateur): string => {
+export const energieGenerateurToString = (value: EnergieGenerateur | null): string => {
   switch (value) {
     case EnergieGenerateur.electricite:
       return 'Electricité'
@@ -178,6 +180,8 @@ export const energieGenerateurToString = (value: EnergieGenerateur): string => {
       return 'Bois granulé'
     case EnergieGenerateur.reseau_chaleur:
       return 'Réseau de chaleur'
+    default:
+      return 'Inconnue'
   }
 }
 

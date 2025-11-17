@@ -45,7 +45,7 @@ export enum TypeStructure {
   plancher_entrevous_isolant = 'plancher_entrevous_isolant'
 }
 
-export const typeStructureToString = (value: TypeStructure): string => {
+export const typeStructureToString = (value: TypeStructure | null): string => {
   switch (value) {
     case TypeStructure.plancher_avec_ou_sans_remplissage:
       return 'Plancher avec ou sans remplissage'
@@ -69,5 +69,7 @@ export const typeStructureToString = (value: TypeStructure): string => {
       return 'Plancher lourd type entrevous terre cuite ou poutrelles béton'
     case TypeStructure.plancher_entrevous_isolant:
       return 'Plancher entrevous isolant'
+    default:
+      return 'Plancher inconnu'
   }
 }

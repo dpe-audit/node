@@ -45,7 +45,18 @@ export enum Performance {
   insuffisante = 'insuffisante'
 }
 
-export const typeIsolationToString = (value: TypeIsolation): string => {
+export const etatIsolationToString = (value: EtatIsolation | null): string => {
+  switch (value) {
+    case EtatIsolation.isole:
+      return 'Oui'
+    case EtatIsolation.non_isole:
+      return 'Non'
+    default:
+      return 'Inconnu'
+  }
+}
+
+export const typeIsolationToString = (value: TypeIsolation | null): string => {
   switch (value) {
     case TypeIsolation.iti:
       return "Isolation par l'intérieur"
@@ -61,22 +72,9 @@ export const typeIsolationToString = (value: TypeIsolation): string => {
       return "Isolation répartie et par l'extérieur"
     case TypeIsolation.itr_iti_ite:
       return "Isolation répartie, par l'intérieur et par l'extérieur"
+    default:
+      return "Isolation inconnue"
   }
-}
-
-export const isolationToString = (value: Isolation): string => {
-  if (null === value.etat || null === value.type) {
-    return 'Inconnue'
-  }
-  if (value.etat === EtatIsolation.non_isole) {
-    return 'Non'
-  }
-  let text: string = typeIsolationToString(value.type)
-
-  if (value.epaisseur) {
-    text += ` - ${value.epaisseur} mm`
-  }
-  return text
 }
 
 export const inertieToString = (inertie: Inertie): string => {

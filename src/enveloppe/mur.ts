@@ -65,62 +65,66 @@ export enum TypeDoublage {
   materiaux_connu = 'materiaux_connu'
 }
 
-export const typeStructureToString = (value: TypeStructure): string => {
+export const typeStructureToString = (value: TypeStructure | null): string => {
   switch (value) {
     case TypeStructure.pierre_moellons:
-      return 'Pierre à moellons'
+      return 'Mur en pierre et moellons'
     case TypeStructure.pierre_moellons_avec_remplissage:
-      return 'Pierre à moellons avec remplissage'
+      return 'Mur en pierre et moellons avec remplissage'
     case TypeStructure.pise_ou_beton_terre:
-      return 'Pisé ou béton de terre'
+      return 'Mur en en pisé ou béton de terre'
     case TypeStructure.pan_bois_sans_remplissage:
-      return 'Pan de bois sans remplissage'
+      return 'Mur en pan de bois sans remplissage'
     case TypeStructure.pan_bois_avec_remplissage:
-      return 'Pan de bois avec remplissage'
+      return 'Mur en pan de bois avec remplissage'
     case TypeStructure.bois_rondin:
-      return 'Bois rondin'
+      return 'Mur en bois rondin'
     case TypeStructure.brique_pleine_simple:
-      return 'Brique pleine simple'
+      return 'Mur en brique pleine simple'
     case TypeStructure.brique_pleine_double_avec_lame_air:
-      return "Brique pleine double avec lame d'air"
+      return "Mur en brique pleine double avec lame d'air"
     case TypeStructure.brique_creuse:
-      return 'Brique creuse'
+      return 'Mur en brique creuse'
     case TypeStructure.bloc_beton_plein:
-      return 'Bloc béton plein'
+      return 'Mur en bloc de béton plein'
     case TypeStructure.bloc_beton_creux:
-      return 'Bloc béton creux'
+      return 'Mur en bloc de béton creux'
     case TypeStructure.beton_banche:
-      return 'Béton banché'
+      return 'Mur en béton banché'
     case TypeStructure.beton_machefer:
-      return 'Béton mâchefer'
+      return 'Mur en béton mâchefer'
     case TypeStructure.brique_terre_cuite_alveolaire:
-      return 'Brique terre cuite alvéolaire'
+      return 'Mur en brique terre cuite alvéolaire'
     case TypeStructure.sandwich_beton_isolant_beton_sans_isolation_rapportee:
-      return 'Sandwich béton isolant béton sans isolation rapportée'
+      return 'Mur sandwich béton isolant béton sans isolation rapportée'
     case TypeStructure.cloison_platre:
-      return 'Cloison plâtre'
+      return 'Cloison de plâtre'
     case TypeStructure.ossature_bois_sans_remplissage:
-      return 'Ossature bois sans remplissage'
+      return 'Mur à ossature bois sans remplissage'
     case TypeStructure.ossature_bois_avec_remplissage_tout_venant:
-      return 'Ossature bois avec remplissage tout-venant'
+      return 'Mur à ossature bois avec remplissage tout-venant'
     case TypeStructure.ossature_bois_avec_remplissage_isolant:
-      return 'Ossature bois avec remplissage isolant'
+      return 'Mur à ossature bois avec remplissage isolant'
     case TypeStructure.beton_cellulaire:
-      return 'Béton cellulaire'
+      return 'Mur en béton cellulaire'
+    default:
+      return 'Mur inconnu'
   }
 }
 
-export const typeDoublageToString = (value: TypeDoublage): string => {
+export const typeDoublageToString = (value: TypeDoublage | null): string => {
   switch (value) {
     case TypeDoublage.sans_doublage:
       return 'Sans doublage'
     case TypeDoublage.indetermine:
-      return 'Indéterminé'
+      return 'Doublage indéterminé'
     case TypeDoublage.lame_air_inferieur_15mm:
-      return "Lame d'air inférieure à 15 mm"
+      return "Doublage avec lame d'air inférieure à 15 mm"
     case TypeDoublage.lame_air_superieur_15mm:
-      return "Lame d'air supérieure à 15 mm"
+      return "Doublage avec lame d'air supérieure à 15 mm"
     case TypeDoublage.materiaux_connu:
       return 'Matériaux connu'
+    default:
+      return 'Doublage inconnu'
   }
 }

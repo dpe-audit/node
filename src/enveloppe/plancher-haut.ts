@@ -47,7 +47,7 @@ export enum TypeStructure {
   bac_acier = 'bac_acier'
 }
 
-export const typeStructureToString = (value: TypeStructure): string => {
+export const typeStructureToString = (value: TypeStructure | null): string => {
   switch (value) {
     case TypeStructure.plafond_avec_ou_sans_remplissage:
       return 'Plafond avec ou sans remplissage'
@@ -72,10 +72,12 @@ export const typeStructureToString = (value: TypeStructure): string => {
     case TypeStructure.combles_amenages_sous_rampant:
       return 'Combles aménagés sous rampant'
     case TypeStructure.toiture_chaume:
-      return 'Toiture chaume'
+      return 'Toiture en chaume'
     case TypeStructure.plafond_patre:
       return 'Plafond patre'
     case TypeStructure.bac_acier:
       return 'Bac acier'
+    default:
+      return 'Plancher inconnu'
   }
 }

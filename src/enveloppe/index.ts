@@ -147,3 +147,63 @@ export const confortEteToString = (value: PerformanceConfortEte): string => {
       return 'Insuffisant'
   }
 }
+
+export const mergeMurs = (
+  enveloppe: IEnveloppe,
+  data: Partial<IMur>[]
+): IEnveloppe => {
+  return {
+    ...enveloppe,
+    murs: enveloppe.murs.map((item, index) => {
+      return { ...item, ...data[index] }
+    })
+  }
+}
+
+export const mergePlanchersHauts = (
+  enveloppe: IEnveloppe,
+  data: Partial<IPlancherHaut>[]
+): IEnveloppe => {
+  return {
+    ...enveloppe,
+    planchers_hauts: enveloppe.planchers_hauts.map((item, index) => {
+      return { ...item, ...data[index] }
+    })
+  }
+}
+
+export const mergePlanchersBas = (
+  enveloppe: IEnveloppe,
+  data: Partial<IPlancherBas>[]
+): IEnveloppe => {
+  return {
+    ...enveloppe,
+    planchers_bas: enveloppe.planchers_bas.map((item, index) => {
+      return { ...item, ...data[index] }
+    })
+  }
+}
+
+export const mergeBaies = (
+  enveloppe: IEnveloppe,
+  data: Partial<IBaie>[]
+): IEnveloppe => {
+  return {
+    ...enveloppe,
+    baies: enveloppe.baies.map((item, index) => {
+      return { ...item, ...data[index] }
+    })
+  }
+}
+
+export const mergePortes = (
+  enveloppe: IEnveloppe,
+  data: Partial<IPorte>[]
+): IEnveloppe => {
+  return {
+    ...enveloppe,
+    portes: enveloppe.portes.map((item, index) => {
+      return { ...item, ...data[index] }
+    })
+  }
+}
