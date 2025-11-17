@@ -66,6 +66,23 @@ export enum TypeVitrage {
   triple_vitrage = 'triple_vitrage'
 }
 
+export const typePorteToString = (value: IPorte): string => {
+  const isolation = isolationToString(value.isolation).toLocaleLowerCase()
+
+  switch (value.materiau) {
+    case Materiau.pvc:
+      return `Porte en PVC ${isolation}`
+    case Materiau.bois:
+      return `Porte en bois ${isolation}`
+    case Materiau.bois_metal:
+      return `Porte en bois et métal ${isolation}`
+    case Materiau.metal:
+      return `Porte en métal ${isolation}`
+    case null:
+      return 'Porte inconnue'
+  }
+}
+
 export const typePoseToString = (value: TypePose): string => {
   switch (value) {
     case TypePose.nu_exterieur:
@@ -77,16 +94,18 @@ export const typePoseToString = (value: TypePose): string => {
   }
 }
 
-export const isolationToString = (value: Isolation): string => {
+export const isolationToString = (value: Isolation | null): string => {
   switch (value) {
     case Isolation.isole:
-      return 'Isolé'
+      return 'Isolée'
     case Isolation.non_isole:
-      return 'Non isolé'
+      return 'Non isolée'
+    case null:
+      return 'Isolation inconnue'
   }
 }
 
-export const materiauToString = (value: Materiau): string => {
+export const materiauToString = (value: Materiau | null): string => {
   switch (value) {
     case Materiau.pvc:
       return 'PVC'
@@ -96,6 +115,8 @@ export const materiauToString = (value: Materiau): string => {
       return 'Bois métal'
     case Materiau.metal:
       return 'Métal'
+    case null:
+      return 'Matériau inconnu'
   }
 }
 
