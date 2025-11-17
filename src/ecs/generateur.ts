@@ -89,7 +89,7 @@ export enum ModeCombustion {
   condensation = 'condensation'
 }
 
-export const energieGenerateurToEnum = (value: EnergieGenerateur): Energie => {
+export const energieGenerateurToEnum = (value: EnergieGenerateur | null): Energie | null => {
   switch (value) {
     case EnergieGenerateur.electricite:
       return Energie.electricite
@@ -109,6 +109,8 @@ export const energieGenerateurToEnum = (value: EnergieGenerateur): Energie => {
       return Energie.bois
     case EnergieGenerateur.reseau_chaleur:
       return Energie.reseau_urbain
+    default:
+      return null
   }
 }
 

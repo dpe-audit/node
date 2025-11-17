@@ -1,4 +1,4 @@
-import type { Consommations } from "../common"
+import { Energie, type Consommations } from "../common"
 
 export interface IGenerateur {
   id: string
@@ -157,6 +157,31 @@ export const typeGenerateurToString = (value: TypeGenerateur | null): string => 
       return 'Réseau de chaleur'
     default:
       return 'Générateur inconnu'
+  }
+}
+
+export const energieGenerateurToEnum = (value: EnergieGenerateur | null): Energie | null => {
+  switch (value) {
+    case EnergieGenerateur.electricite:
+      return Energie.electricite
+    case EnergieGenerateur.gaz_naturel:
+      return Energie.gaz_naturel
+    case EnergieGenerateur.gpl:
+      return Energie.gpl
+    case EnergieGenerateur.fioul:
+      return Energie.fioul
+    case EnergieGenerateur.charbon:
+      return Energie.charbon
+    case EnergieGenerateur.bois_buche:
+      return Energie.bois
+    case EnergieGenerateur.bois_plaquette:
+      return Energie.bois
+    case EnergieGenerateur.bois_granule:
+      return Energie.bois
+    case EnergieGenerateur.reseau_chaleur:
+      return Energie.reseau_urbain
+    default:
+      return null
   }
 }
 
